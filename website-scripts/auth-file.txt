@@ -1,0 +1,1 @@
+host=db database=openstreetmap user=openstreetmap validateSchemaVersion=no

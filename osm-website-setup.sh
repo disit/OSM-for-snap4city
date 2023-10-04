@@ -16,7 +16,7 @@ cp Firenze.osm.pbf openstreetmap-website
 cd website-scripts
 chmod +x configure-leaflet-osm-js.sh
 ./configure-leaflet-osm-js.sh >> leaflet.osm.js
-cp leaflet.osm.js openstreetmap-website/vendor/assets/leaflet/
+cp leaflet.osm.js ../openstreetmap-website/vendor/assets/leaflet/
 cd ../openstreetmap-website
 cp config/example.storage.yml config/storage.yml
 cp config/docker.database.yml config/database.yml

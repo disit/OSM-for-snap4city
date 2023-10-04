@@ -13,10 +13,11 @@ cp website-scripts/import-pbf.sh openstreetmap-website
 cp website-scripts/make-diffs.sh openstreetmap-website
 cp website-scripts/get-updates.sh openstreetmap-website
 cp Firenze.osm.pbf openstreetmap-website
-chmod +x website-scripts/configure-leaflet-osm-js.sh
-./website-scripts/configure-leaflet-osm-js.sh >> website-scripts/leaflet.osm.js
-cp website-scripts/leaflet.osm.js openstreetmap-website/vendor/assets/leaflet/
-cd openstreetmap-website
+cd website-scripts
+chmod +x configure-leaflet-osm-js.sh
+./configure-leaflet-osm-js.sh >> leaflet.osm.js
+cp leaflet.osm.js openstreetmap-website/vendor/assets/leaflet/
+cd ../openstreetmap-website
 cp config/example.storage.yml config/storage.yml
 cp config/docker.database.yml config/database.yml
 touch config/settings.local.yml

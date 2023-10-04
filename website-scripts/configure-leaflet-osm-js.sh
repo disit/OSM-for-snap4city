@@ -1,9 +1,9 @@
-L.OSM = {};
+echo "L.OSM = {};
 
 L.OSM.TileLayer = L.TileLayer.extend({
   options: {
     url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-    attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
+    attribution: '© <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap</a> contributors'
   },
 
   initialize: function (options) {
@@ -14,7 +14,7 @@ L.OSM.TileLayer = L.TileLayer.extend({
 
 L.OSM.Mapnik = L.OSM.TileLayer.extend({
   options: {
-    url: 'http://localhost:8008/tile/{z}/{x}/{y}.png',
+    url: '`cat put-ip-here.txt`/tile/{z}/{x}/{y}.png',
     maxZoom: 19
   }
 });
@@ -24,7 +24,7 @@ L.OSM.CyclOSM = L.OSM.TileLayer.extend({
     url: 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
     maxZoom: 20,
     subdomains: 'abc',
-    attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors. Tiles courtesy of <a href="https://www.openstreetmap.fr" target="_blank">OpenStreetMap France</a>'
+    attribution: '© <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap</a> contributors. Tiles courtesy of <a href=\"https://www.openstreetmap.fr\" target=\"_blank\">OpenStreetMap France</a>'
   }
 });
 
@@ -32,7 +32,7 @@ L.OSM.CycleMap = L.OSM.TileLayer.extend({
   options: {
     url: 'https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}{r}.png?apikey={apikey}',
     maxZoom: 21,
-    attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors. Tiles courtesy of <a href="http://www.thunderforest.com/" target="_blank">Andy Allan</a>'
+    attribution: '© <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap</a> contributors. Tiles courtesy of <a href=\"http://www.thunderforest.com/\" target=\"_blank\">Andy Allan</a>'
   }
 });
 
@@ -40,7 +40,7 @@ L.OSM.TransportMap = L.OSM.TileLayer.extend({
   options: {
     url: 'https://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}{r}.png?apikey={apikey}',
     maxZoom: 21,
-    attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors. Tiles courtesy of <a href="http://www.thunderforest.com/" target="_blank">Andy Allan</a>'
+    attribution: '© <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap</a> contributors. Tiles courtesy of <a href=\"http://www.thunderforest.com/\" target=\"_blank\">Andy Allan</a>'
   }
 });
 
@@ -48,7 +48,7 @@ L.OSM.OPNVKarte = L.OSM.TileLayer.extend({
   options: {
     url: 'https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png',
     maxZoom: 18,
-    attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors. Tiles courtesy of <a href="http://memomaps.de/" target="_blank">MeMoMaps</a>'
+    attribution: '© <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap</a> contributors. Tiles courtesy of <a href=\"http://memomaps.de/\" target=\"_blank\">MeMoMaps</a>'
   }
 });
 
@@ -57,7 +57,7 @@ L.OSM.HOT = L.OSM.TileLayer.extend({
     url: 'https://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png',
     maxZoom: 20,
     subdomains: 'abc',
-    attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors. Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+    attribution: '© <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap</a> contributors. Tiles courtesy of <a href=\"http://hot.openstreetmap.org/\" target=\"_blank\">Humanitarian OpenStreetMap Team</a>'
   }
 });
 
@@ -95,9 +95,9 @@ L.OSM.DataLayer = L.FeatureGroup.extend({
     for (var i = 0; i < features.length; i++) {
       var feature = features[i], layer;
 
-      if (feature.type === "changeset") {
+      if (feature.type === \"changeset\") {
         layer = L.rectangle(feature.latLngBounds, this.options.styles.changeset);
-      } else if (feature.type === "node") {
+      } else if (feature.type === \"node\") {
         layer = L.circleMarker(feature.latLng, this.options.styles.node);
       } else {
         var latLngs = new Array(feature.nodes.length);
@@ -187,15 +187,15 @@ L.Util.extend(L.OSM, {
   getChangesets: function (xml) {
     var result = [];
 
-    var nodes = xml.getElementsByTagName("changeset");
+    var nodes = xml.getElementsByTagName(\"changeset\");
     for (var i = 0; i < nodes.length; i++) {
-      var node = nodes[i], id = node.getAttribute("id");
+      var node = nodes[i], id = node.getAttribute(\"id\");
       result.push({
         id: id,
-        type: "changeset",
+        type: \"changeset\",
         latLngBounds: L.latLngBounds(
-          [node.getAttribute("min_lat"), node.getAttribute("min_lon")],
-          [node.getAttribute("max_lat"), node.getAttribute("max_lon")]),
+          [node.getAttribute(\"min_lat\"), node.getAttribute(\"min_lon\")],
+          [node.getAttribute(\"max_lat\"), node.getAttribute(\"max_lon\")]),
         tags: this.getTags(node)
       });
     }
@@ -206,14 +206,14 @@ L.Util.extend(L.OSM, {
   getNodes: function (xml) {
     var result = {};
 
-    var nodes = xml.getElementsByTagName("node");
+    var nodes = xml.getElementsByTagName(\"node\");
     for (var i = 0; i < nodes.length; i++) {
-      var node = nodes[i], id = node.getAttribute("id");
+      var node = nodes[i], id = node.getAttribute(\"id\");
       result[id] = {
         id: id,
-        type: "node",
-        latLng: L.latLng(node.getAttribute("lat"),
-                         node.getAttribute("lon"),
+        type: \"node\",
+        latLng: L.latLng(node.getAttribute(\"lat\"),
+                         node.getAttribute(\"lon\"),
                          true),
         tags: this.getTags(node)
       };
@@ -225,19 +225,19 @@ L.Util.extend(L.OSM, {
   getWays: function (xml, nodes) {
     var result = [];
 
-    var ways = xml.getElementsByTagName("way");
+    var ways = xml.getElementsByTagName(\"way\");
     for (var i = 0; i < ways.length; i++) {
-      var way = ways[i], nds = way.getElementsByTagName("nd");
+      var way = ways[i], nds = way.getElementsByTagName(\"nd\");
 
       var way_object = {
-        id: way.getAttribute("id"),
-        type: "way",
+        id: way.getAttribute(\"id\"),
+        type: \"way\",
         nodes: new Array(nds.length),
         tags: this.getTags(way)
       };
 
       for (var j = 0; j < nds.length; j++) {
-        way_object.nodes[j] = nodes[nds[j].getAttribute("ref")];
+        way_object.nodes[j] = nodes[nds[j].getAttribute(\"ref\")];
       }
 
       result.push(way_object);
@@ -249,20 +249,20 @@ L.Util.extend(L.OSM, {
   getRelations: function (xml, nodes, ways) {
     var result = [];
 
-    var rels = xml.getElementsByTagName("relation");
+    var rels = xml.getElementsByTagName(\"relation\");
     for (var i = 0; i < rels.length; i++) {
-      var rel = rels[i], members = rel.getElementsByTagName("member");
+      var rel = rels[i], members = rel.getElementsByTagName(\"member\");
 
       var rel_object = {
-        id: rel.getAttribute("id"),
-        type: "relation",
+        id: rel.getAttribute(\"id\"),
+        type: \"relation\",
         members: new Array(members.length),
         tags: this.getTags(rel)
       };
 
       for (var j = 0; j < members.length; j++) {
-        if (members[j].getAttribute("type") === "node")
-          rel_object.members[j] = nodes[members[j].getAttribute("ref")];
+        if (members[j].getAttribute(\"type\") === \"node\")
+          rel_object.members[j] = nodes[members[j].getAttribute(\"ref\")];
         else // relation-way and relation-relation membership not implemented
           rel_object.members[j] = null;
       }
@@ -276,11 +276,11 @@ L.Util.extend(L.OSM, {
   getTags: function (xml) {
     var result = {};
 
-    var tags = xml.getElementsByTagName("tag");
+    var tags = xml.getElementsByTagName(\"tag\");
     for (var j = 0; j < tags.length; j++) {
-      result[tags[j].getAttribute("k")] = tags[j].getAttribute("v");
+      result[tags[j].getAttribute(\"k\")] = tags[j].getAttribute(\"v\");
     }
 
     return result;
   }
-});
+});"

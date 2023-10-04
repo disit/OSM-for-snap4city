@@ -22,7 +22,6 @@ cp config/example.storage.yml config/storage.yml
 cp config/docker.database.yml config/database.yml
 touch config/settings.local.yml
 docker-compose build
-docker-compose run --rm web bundle exec rails db:migrate
 chmod +x import-pbf.sh
 ./import-pbf.sh Firenze.osm.pbf
 rm -f Firenze.osm.pbf

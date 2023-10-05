@@ -22,10 +22,11 @@ cp config/example.storage.yml config/storage.yml
 cp config/docker.database.yml config/database.yml
 touch config/settings.local.yml
 docker-compose build
+docker-compose up -d
+docker-compose run --rm web bundle exec rails db:migrate
 chmod +x import-pbf.sh
 ./import-pbf.sh Firenze.osm.pbf
 rm -f Firenze.osm.pbf
-docker-compose up -d
 echo "Procedere con la registrazione del proprio utente e con la configurazione dell'editor iD su http://localhost:3000/"
 echo "Vedi 'Managing Users' e 'OAuth Consumer Keys' in https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md"
 exit 0

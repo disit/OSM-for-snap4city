@@ -12,6 +12,7 @@ cp website-scripts/export-to-named-pbf.sh openstreetmap-website
 cp website-scripts/import-pbf.sh openstreetmap-website
 cp website-scripts/make-diffs.sh openstreetmap-website
 cp website-scripts/get-updates.sh openstreetmap-website
+cp website-scripts/open-rails-console.sh openstreetmap-website
 cp Firenze.osm.pbf openstreetmap-website
 cd website-scripts
 chmod +x configure-leaflet-osm-js.sh
@@ -29,4 +30,5 @@ chmod +x import-pbf.sh
 rm -f Firenze.osm.pbf
 echo "Procedere con la registrazione del proprio utente e con la configurazione dell'editor iD su http://localhost:3000/"
 echo "Vedi 'Managing Users' e 'OAuth Consumer Keys' in https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md"
+echo "Lo script \"open-rails-console.sh\" può aiutare ad aprire la console del container"
 exit 0

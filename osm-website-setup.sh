@@ -28,6 +28,7 @@ docker-compose run --rm web bundle exec rails db:migrate
 chmod +x import-pbf.sh
 ./import-pbf.sh Firenze.osm.pbf
 rm -f Firenze.osm.pbf
+chmod +x export-to-pbf.sh
 ./export-to-pbf.sh Firenze-latest.osm.pbf
 echo "Procedere con la registrazione del proprio utente e con la configurazione dell'editor iD su http://localhost:3000/"
 echo "Vedi 'Managing Users' e 'OAuth Consumer Keys' in https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md"

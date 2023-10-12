@@ -21,5 +21,5 @@ Questa repo fa uso dei seguenti software:
 La procedura consiste nel confrontare due file .pbf e trarre le modifiche con Osmosis. Queste modifiche vengono poi compresse in un file .gz e passate al tile server, che con le quali stabilisce quali tiles devono essere rirenderizzate.
 
 Il primo file .pbf è la versione del database antecedente le modifiche, il secondo file invece è la versione che contiene le modifiche. È importante quindi che ci sia una versione "pulita". Se questo file non esiste, allora prima di fare qualsiasi modifica su iD eseguire il comando `./export-to-pbf.sh Firenze-latest.osm.pbf` in `/openstreetmap-website`. Successivamente:
-- Nella cartella `/openstreetmap-website`:
-  - Eseguire `./get-updates.sh`.
+- Nella cartella `/openstreetmap-website` eseguire `./get-updates.sh`.
+- Nella cartella `/openstreetmap-tile-server` eseguire `./launch-update-task.sh`

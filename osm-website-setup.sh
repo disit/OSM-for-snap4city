@@ -1,6 +1,6 @@
 if [ "$(cat website-scripts/put-ip-here.txt)" = "http://localhost:8008" ]; then
 	echo "È necessario inserire l'indirizzo ip e la porta del tile server nel file \"website-scripts/put-ip-here.txt\" "
-	echo "Esempio: http://192.168.178.10:8008 oppure http://<hostname>:8008"
+	echo "Esempio: http://192.168.178.10:8008 oppure http://<hostname>:<porta>"
 	exit 1
 fi
 set -e

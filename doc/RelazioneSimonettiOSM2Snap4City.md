@@ -38,7 +38,8 @@ Occasionalmente durante la fase di import del file osm.pbf si riscontravano erro
 
 - `docker-compose run --rm web bundle exec rails db:migrate` 
 
-Una volta ingerito il file pbf, viene avviato il container per completare la configurazione dell’editor, i cui step sono mostrati nel documento [CONFIGURE.md](https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md) .
+Una volta ingerito il file pbf, viene avviato il container per completare la configurazione dell’editor, i cui step sono mostrati nel documento [CONFIGURE.md](https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md).  
+La procedura di setup è racchiusa nello script `osm-website-setup.sh`, eccezion fatta per la registrazione e configurazione manuale dell'utente di iD.
 
 **Primi test – cancellazione di entità**
 
@@ -229,4 +230,15 @@ _Figura 15: Anomalia Via di Santa Marta_
 
 **Fare revert di un changeset**
 
-vedi [https://wiki.openstreetmap.org/wiki/Change_rollback](https://wiki.openstreetmap.org/wiki/Change_rollback) e [https://wiki.openstreetmap.org/wiki/Osm-revert](https://wiki.openstreetmap.org/wiki/Osm-revert).
+Il revert delle modifiche non è un operazione immediata come potrebbe essere per esempio con i commit su Git. Queste sono alcune fonti che parlano di ciò:
+
+- [https://wiki.openstreetmap.org/wiki/Change_rollback](https://wiki.openstreetmap.org/wiki/Change_rollback)
+- [https://wiki.openstreetmap.org/wiki/Osm-revert](https://wiki.openstreetmap.org/wiki/Osm-revert)
+
+**Altre fonti**
+
+1. https://help.openstreetmap.org/questions/80335/find-cities-boundary-in-a-specific-country  
+2. https://help.openstreetmap.org/questions/62670/way_nodes-and-current_way_nodes  
+3. https://wiki.openstreetmap.org/wiki/Query_features_tool  
+4. https://dev.overpass-api.de/overpass-doc/en/more_info/setup.html  
+5. https://help.openstreetmap.org/questions/73488/change-tiles-of-local-openstreetmap-website  

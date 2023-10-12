@@ -1,14 +1,13 @@
 
-**Relazione per l’esame di Sistemi Distribuiti:**
-**Setup e manutenzione dell'ecosistema OpenStreetMap per la città di Firenze**
+## Relazione per l’esame di Sistemi Distribuiti: Setup e manutenzione dell'ecosistema OpenStreetMap per la città di Firenze
 
-**Introduzione**
+### Introduzione
 
 In questa relazione viene descritto tutto il lavoro svolto durante lo svolgimento del laboratorio.
 
 Il lavoro è stato svolto su una macchina virtuale con 2 core, 8 GB di memoria, 62 GB di spazio su disco e con sistema operativo Ubuntu Server.
 
-**L'ecosistema OpenStreetMap**
+### L'ecosistema OpenStreetMap
 
 OpenStreetMap è composto da diversi software, ognuno dei quali fornisce degli strumenti o API per interfacciarsi ai dati OSM.
 In questo documento ne vengono citati alcuni, solo quelli che sono stati necessari per avere un editor di mappe specifico per la mappa di Firenze.
@@ -24,7 +23,7 @@ Tra gli strumenti disponibili nell'interfaccia di OpenStreetMap c'è anche il to
 Questa API è specializzata nel fare query in sola lettura sul database OSM in modo veloce ed efficiente.
 <div style="page-break-after: always;"></div>
 
-**Setup**
+### Setup
 
 Per prima cosa è stato installato sulla macchina virtuale un clone del sito di OpenStreetMap e il tool grafico “iD Editor”. È stato sufficiente seguire la guida su [GitHub](https://github.com/openstreetmap/openstreetmap-website/blob/master/DOCKER.md), che permette di installarlo in un container Docker tramite Docker-compose.
 
@@ -41,7 +40,7 @@ Occasionalmente durante la fase di import del file osm.pbf si riscontravano erro
 Una volta ingerito il file pbf, viene avviato il container per completare la configurazione dell’editor, i cui step sono mostrati nel documento [CONFIGURE.md](https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md).  
 La procedura di setup è racchiusa nello script `osm-website-setup.sh`, eccezion fatta per la registrazione e configurazione manuale dell'utente di iD.
 
-**Primi test – cancellazione di entità**
+### Primi test – cancellazione di entità
 
 Come primo test si è provato a cancellare degli edifici antistanti alla facoltà di Ingegneria a Santa Marta (in particolare gli edifici [#110964127](https://www.openstreetmap.org/way/110964127) e [#110964128](https://www.openstreetmap.org/way/110964128)).
 
@@ -55,7 +54,7 @@ Ritornando in modalità di visualizzazione, puntando il tool “Query features�
 
 Ciò si riflette nello schema database di OSM, in quanto nella tabella “current_ways”, la riga con id 110964128 è ancora presente ma è stata aggiornata con l’ultimo changeset e marcata “invisibile”. Mentre nella tabella “ways” ci sono più righe con quel ID, ciascuna per ogni versione di quella entità. La tabella “ways” praticamente tiene conto della storia delle varie entità[<sup>2</sup>](https://help.openstreetmap.org/questions/62670/way_nodes-and-current_way_nodes).
 
-**Creazione nuova entità**
+### Creazione nuova entità
 
 Successivamente alla cancellazione degli edifici, si è provato a aggiungere un eliporto, composto da un “Helipad” e una “Service Road” di accesso.  
 Dopo aver inviato il changeset, come nel caso precedente i cambiamenti non si riflettono immediatamente sulla mappa.
@@ -68,7 +67,7 @@ Questo succede perché il tool in questione utilizza [OverpassAPI](https://wiki.
 
 Il sito locale di OSM comunque permette di cambiare il provider di questo servizio. È sufficiente cambiare l’URL in `/config/settings.yml` alla voce ‘overpass_url’. Quindi potrebbe essere possibile configurare un server di Overpass in locale e agganciarlo al sito [<sup>4</sup>](https://dev.overpass-api.de/overpass-doc/en/more_info/setup.html).
 
-**Database schema**
+### Database schema
 
 Lo schema che descrive la struttura del database di OpenStreetMap lo si può trovare a questo [link](https://wiki.openstreetmap.org/wiki/Openstreetmap-website/Database_schema).
 
@@ -84,7 +83,7 @@ I changesets invece sono memorizzati nelle tabelle “changesets” e “changes
 
 Le modifiche fatte con l’editor iD finiscono sia nella tabella “current” che nella tabella non “current”, dove in quest’ultima c’è la colonna “changeset_id” che indica in quale changeset è stata fatta la modifica.
 
-**OSM Tile Server**
+### OSM Tile Server
 
 Per renderizzare le nuove tile c’è bisogno di un tile server. Tra le varie alternative è stato scelto di fare un [fork](https://github.com/SimoMett/openstreetmap-tile-server) di [openstreetmap-tile-server di Overv](https://github.com/Overv/openstreetmap-tile-server), che è la soluzione al momento più facile da mettere in piedi.  
 Lo script `osm-tile-server-setup.sh` clona e configura il server.
@@ -128,7 +127,7 @@ L'intera operazione impiega una decina di secondi per changesets piccoli. Non è
 
 Le modifiche sulle tile in teoria si dovrebbero riflettere immediatamente, però nella pratica la cache del browser interferisce con la richiesta di renderizzare le nuove tile appena modificate.
 
-**Overpass API**
+### Overpass API
 
 Nella sezione “Creazione nuove entità” si è evidenziata l’importanza di inizializzare un proprio provider di Overpass per accedere alle modifiche effettuate in locale.
 
@@ -173,7 +172,7 @@ Di seguito sono illustrati gli step per inizializzare tale componente:
 
 A questo punto se tutto è andato bene dovrebbe essere possibile visualizzare le nuove entità con il tool “Query features”.
 
-**Altri test – divisione delle corsie di Viale Redi, Viale Alderotti, Piazza Dalmazia e Via di Santa Marta**
+### Altri test – divisione delle corsie di Viale Redi, Viale Alderotti, Piazza Dalmazia e Via di Santa Marta
 
 I test successivi sono stati la separazione delle carreggiate a doppio senso di marcia in strade parallele a senso unico, con l’intento di vedere come si sarebbe comportato il tile server a renderizzare le strade e soprattutto se si fossero presentati artefatti indesiderati.
 
@@ -228,14 +227,19 @@ L’ultimo test è stato quello più problematico.
 
 _Figura 15: Anomalia Via di Santa Marta_
 
-**Fare revert di un changeset**
+### Fare revert di un changeset
 
 Il revert delle modifiche non è un operazione immediata come potrebbe essere per esempio con i commit su Git. Queste sono alcune fonti che parlano di ciò:
 
 - [https://wiki.openstreetmap.org/wiki/Change_rollback](https://wiki.openstreetmap.org/wiki/Change_rollback)
 - [https://wiki.openstreetmap.org/wiki/Osm-revert](https://wiki.openstreetmap.org/wiki/Osm-revert)
 
-**Altre fonti**
+### Appunti personali
+
+La procedura di aggiornamento delle tile proposta funziona bene, però è molto macchinosa e non granulare, nel senso che non è possibile per esempio ottenere le modifiche fatte in un certo changeset oppure ottenere le modifiche fatte in un certo lasso di tempo. L'unica cosa che permette di fare è prendere tutte le modifiche effettuate fino al momento dell'avvio dell'aggiornamento, estraendo tutto il database in un file e comparando le due versioni con Osmosis. Sicuramente è un grosso miglioramento rispetto al dover resettare tutto il container ogni qualvolta che si vuole rirenderizzare le tile, però ho il presentimento che si possa fare di meglio.
+Penso che bisogna sfogliare ancora più dettagliatamente la documentazione di Osmosis su https://wiki.openstreetmap.org/wiki/Osmosis/Detailed_Usage. Ho trovato diversi task interessanti nella documentazione, come `--read-apidb-change (--rdc)` e tutta la parte con l'integrazione con PostGis. Magari c'è una maniera più diretta e più configurabile per ottenere i changesets e somministrarli al tile tramite un'interfaccia diretta al suo database PostGis.
+
+### Altre fonti
 
 1. https://help.openstreetmap.org/questions/80335/find-cities-boundary-in-a-specific-country  
 2. https://help.openstreetmap.org/questions/62670/way_nodes-and-current_way_nodes  

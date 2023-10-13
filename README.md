@@ -18,11 +18,11 @@ Questa repo fa uso dei seguenti software:
 - Procedere con la registrazione e configurazione dell' utente dell'editor sulla pagina web (di default [http://localhost:3000/](http://localhost:3000/)). Seguire le sezioni 'Managing Users' e 'OAuth Consumer Keys' di [questa pagina](https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md). Lo script `open-rails-console.sh` all'interno di `/openstreetmap-website` semplifica l'apertura della console del container.
 
 ## Procedura di aggiornamento delle tile
-La procedura consiste nel confrontare due file .pbf e trarre le modifiche con Osmosis. Queste modifiche vengono poi compresse in un file .gz e passate al tile server, che con le quali stabilisce quali tiles devono essere rirenderizzate.
+Questa procedura consiste nel confrontare due file .pbf e trarre le modifiche con Osmosis. Queste modifiche vengono poi compresse in un file .gz e passate al tile server, che con le quali stabilisce quali tiles devono essere rirenderizzate.
 
 Il primo file .pbf è la versione del database antecedente le modifiche, il secondo file invece è la versione che contiene le modifiche. È importante quindi che ci sia una versione "pulita" priva di modifiche. Se questo file non esiste, allora prima di fare qualsiasi modifica su iD eseguire il comando `./export-to-pbf.sh Firenze-latest.osm.pbf` in `/openstreetmap-website`. Successivamente:
 - Nella cartella `/openstreetmap-website` eseguire `./get-updates.sh`.
 - Nella cartella `/openstreetmap-tile-server` eseguire `./launch-update-task.sh`
 
 ## Procedura di aggiornamento più veloce
-TODO scrivere di get-updates-by-time.sh
+Esiste una strategia più veloce che, invece di confrontare due versioni del database, estrae direttamente i changeset effettuati da una certa data e ora fino al presente. Questa procedura è stata implementata in `get-updates-by-time.sh`. Basta eseguire il comando con la seguente sintassi: `./get-updates-by-time.sh [data in formato yyyy-MM-dd_HH:mm:ss] [file di output]`.

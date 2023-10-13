@@ -100,7 +100,7 @@ Dunque:
 
 - Importare un file pbf con il comando `./import-pbf.sh /path/to/file.osm.pbf` specificando COMPLETO
     
-
+#### Aggiornamento delle tile
 L’aggiornamento delle tile non è un’azione di norma immediata. Al momento è stata individuata una procedura per aggiornare il database e le tile che sfrutta il programma _osm2pgsql_ incluso nel container.
 
 -   Montare una cartella esterna su `/data/updates` o altro percorso a scelta.  
@@ -114,9 +114,6 @@ L’aggiornamento delle tile non è un’azione di norma immediata. Al momento �
     Questo è uno script che è stato scritto per automatizzare la procedura di importazione degli aggiornamenti e scadenza delle tile.
     
     Lo script `launch-update-task.sh` esterno al container facilita la procedura trovando l’id del container e lanciando il comando sopracitato.
-    
-
-  
 
 Con _osmosis_ la procedura per generare i diffs tra due file pbf è la seguente:
 
@@ -126,6 +123,12 @@ Con _osmosis_ la procedura per generare i diffs tra due file pbf è la seguente:
 L'intera operazione impiega una decina di secondi per changesets piccoli. Non è stato ancora testato per changesets grandi.
 
 Le modifiche sulle tile in teoria si dovrebbero riflettere immediatamente, però nella pratica la cache del browser interferisce con la richiesta di renderizzare le nuove tile appena modificate.
+
+#### Si può fare di meglio
+
+La procedura di aggiornamento delle tile appena proposta funziona bene, però è molto macchinosa e non granulare, nel senso che non è possibile per esempio ottenere le modifiche fatte in un certo changeset oppure ottenere le modifiche fatte in un certo lasso di tempo. L'unica cosa che permette di fare è prendere tutte le modifiche effettuate fino al momento dell'avvio dell'aggiornamento, estraendo tutto il database in un file e comparando le due versioni con Osmosis. Sicuramente è un grosso miglioramento rispetto al dover resettare tutto il container ogni qualvolta che si vuole rirenderizzare le tile, però si può fare di meglio.
+
+La documentazione di Osmosis su https://wiki.openstreetmap.org/wiki/Osmosis/Detailed_Usage cita diverse funzionalità interessanti, come `--read-apidb-change (--rdc)` e tutta l'integrazione con PostGis. ~Magari c'è una maniera più diretta e più configurabile per ottenere i changesets e somministrarli al tile server tramite un'interfaccia diretta al suo database PostGis.~ (FIXME)
 
 ### Overpass API
 
@@ -233,11 +236,6 @@ Il revert delle modifiche non è un operazione immediata come potrebbe essere pe
 
 - [https://wiki.openstreetmap.org/wiki/Change_rollback](https://wiki.openstreetmap.org/wiki/Change_rollback)
 - [https://wiki.openstreetmap.org/wiki/Osm-revert](https://wiki.openstreetmap.org/wiki/Osm-revert)
-
-### Appunti personali
-
-La procedura di aggiornamento delle tile proposta funziona bene, però è molto macchinosa e non granulare, nel senso che non è possibile per esempio ottenere le modifiche fatte in un certo changeset oppure ottenere le modifiche fatte in un certo lasso di tempo. L'unica cosa che permette di fare è prendere tutte le modifiche effettuate fino al momento dell'avvio dell'aggiornamento, estraendo tutto il database in un file e comparando le due versioni con Osmosis. Sicuramente è un grosso miglioramento rispetto al dover resettare tutto il container ogni qualvolta che si vuole rirenderizzare le tile, però ho il presentimento che si possa fare di meglio.
-Penso che bisogna sfogliare ancora più dettagliatamente la documentazione di Osmosis su https://wiki.openstreetmap.org/wiki/Osmosis/Detailed_Usage. Ho trovato diversi task interessanti nella documentazione, come `--read-apidb-change (--rdc)` e tutta la parte con l'integrazione con PostGis. Magari c'è una maniera più diretta e più configurabile per ottenere i changesets e somministrarli al tile server tramite un'interfaccia diretta al suo database PostGis.
 
 ### Altre fonti
 

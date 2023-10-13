@@ -237,7 +237,7 @@ Il revert delle modifiche non è un operazione immediata come potrebbe essere pe
 ### Appunti personali
 
 La procedura di aggiornamento delle tile proposta funziona bene, però è molto macchinosa e non granulare, nel senso che non è possibile per esempio ottenere le modifiche fatte in un certo changeset oppure ottenere le modifiche fatte in un certo lasso di tempo. L'unica cosa che permette di fare è prendere tutte le modifiche effettuate fino al momento dell'avvio dell'aggiornamento, estraendo tutto il database in un file e comparando le due versioni con Osmosis. Sicuramente è un grosso miglioramento rispetto al dover resettare tutto il container ogni qualvolta che si vuole rirenderizzare le tile, però ho il presentimento che si possa fare di meglio.
-Penso che bisogna sfogliare ancora più dettagliatamente la documentazione di Osmosis su https://wiki.openstreetmap.org/wiki/Osmosis/Detailed_Usage. Ho trovato diversi task interessanti nella documentazione, come `--read-apidb-change (--rdc)` e tutta la parte con l'integrazione con PostGis. Magari c'è una maniera più diretta e più configurabile per ottenere i changesets e somministrarli al tile tramite un'interfaccia diretta al suo database PostGis.
+Penso che bisogna sfogliare ancora più dettagliatamente la documentazione di Osmosis su https://wiki.openstreetmap.org/wiki/Osmosis/Detailed_Usage. Ho trovato diversi task interessanti nella documentazione, come `--read-apidb-change (--rdc)` e tutta la parte con l'integrazione con PostGis. Magari c'è una maniera più diretta e più configurabile per ottenere i changesets e somministrarli al tile server tramite un'interfaccia diretta al suo database PostGis.
 
 ### Altre fonti
 

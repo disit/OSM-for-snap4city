@@ -12,6 +12,7 @@ cp website-scripts/export-to-named-pbf.sh openstreetmap-website
 cp website-scripts/import-pbf.sh openstreetmap-website
 cp website-scripts/make-diffs.sh openstreetmap-website
 cp website-scripts/get-updates.sh openstreetmap-website
+cp website-scripts/get-updates-by-time.sh openstreetmap-website
 cp website-scripts/open-rails-console.sh openstreetmap-website
 cp Firenze.osm.pbf openstreetmap-website
 cd website-scripts

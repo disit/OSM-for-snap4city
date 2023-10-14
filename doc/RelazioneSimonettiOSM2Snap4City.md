@@ -128,7 +128,7 @@ Le modifiche sulle tile in teoria si dovrebbero riflettere immediatamente, però
 
 La procedura di aggiornamento delle tile appena proposta funziona bene, però è molto macchinosa e non granulare, nel senso che non è possibile per esempio ottenere le modifiche fatte in un certo changeset oppure ottenere le modifiche fatte in un certo lasso di tempo. L'unica cosa che permette di fare è prendere tutte le modifiche effettuate fino al momento dell'avvio dell'aggiornamento, estraendo tutto il database in un file e comparando le due versioni con Osmosis. Sicuramente è un grosso miglioramento rispetto al dover resettare tutto il container ogni qualvolta che si vuole rirenderizzare le tile, però si può fare di meglio.
 
-La documentazione di Osmosis su https://wiki.openstreetmap.org/wiki/Osmosis/Detailed_Usage cita diverse funzionalità interessanti, come `--read-apidb-change (--rdc)` e tutta l'integrazione con PostGis. ~Magari c'è una maniera più diretta e più configurabile per ottenere i changesets e somministrarli al tile server tramite un'interfaccia diretta al suo database PostGis.~ (FIXME)
+La documentazione di Osmosis su https://wiki.openstreetmap.org/wiki/Osmosis/Detailed_Usage cita diverse funzionalità interessanti, come `--read-apidb-change (--rdc)` e tutta l'integrazione con PostGis. Infatti il task `--read-apidb-change` è un modo più diretto e più configurabile per ottenere i changesets. Lo script `get-updates-by-time.sh` implementa questa funzionalità: estrae i changesets effettuati in un intervallo di tempo. Basta eseguire il comando con la seguente sintassi: `./get-updates-by-time.sh [data in formato yyyy-MM-dd_HH:mm:ss] [file di output]` per ottenere i changesets da una certa data in poi, oppure `./get-updates-by-time.sh [inizio intervallo in yyyy-MM-dd_HH:mm:ss] [fine intervallo in yyyy-MM-dd_HH:mm:ss] [file di output]`.
 
 ### Overpass API
 
@@ -208,7 +208,7 @@ Tali restrizioni si possono applicare con il tool di iD mostrato in figura 13.
 
 Qui si è voluto provare a fare un test un po’ più alternativo: prendere le strade con più di una corsia che confluiscono in Piazza Dalmazia (nodo critico per la viabilità di Firenze) e dividerle in più strade a corsia unica.
 
-<img src="screenshots/dalmazia-prima-id.png" alt="image" width="400"/>|<img src="screenshots/dalmazia-prima-tiles.png" alt="image" width="400"/>
+<img src="screenshots/dalmazia-prima-iD.png" alt="image" width="400"/>|<img src="screenshots/dalmazia-prima-tiles.png" alt="image" width="400"/>
 :-------------------------:|:-------------------------:
 _Figura 9: Piazza Dalmazia dall'editor iD_ | _Figura 10: Piazza Dalmazia renderizzato prima delle modifiche_
 

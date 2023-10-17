@@ -5,6 +5,8 @@
 
 In questa relazione viene descritto tutto il lavoro svolto durante lo svolgimento del laboratorio.
 
+Lo scopo è di inizializzare in locale una copia del sistema di OpenStreetMap compreso del suo editor iD per modificare le mappe e di un tile server per visualizzarle.
+
 Il lavoro è stato svolto su una macchina virtuale con 2 core, 8 GB di memoria, 62 GB di spazio su disco e con sistema operativo Ubuntu Server.
 
 ### L'ecosistema OpenStreetMap

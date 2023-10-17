@@ -15,13 +15,13 @@ OpenStreetMap è composto da diversi software, ognuno dei quali fornisce degli s
 In questo documento ne vengono citati alcuni, solo quelli che sono stati necessari per avere un editor di mappe specifico per la mappa di Firenze.
 Nel diagramma a blocchi riportato sotto viene riassunta sinteticamente la struttura dei software utilizzati.
 
-![](diagramma-a-blocchi.svg)
+![](images/diagramma-a-blocchi.svg)
 
 Il sito web di [OpenStreetMap](https://www.openstreetmap.org) è il software principale per visualizzare le mappe ed effettuare le modifiche.
 Tali modifiche si fanno con l'editor iD, tool già integrato nel sito ma che necessita di preconfigurazione.
 Di default, sia l'editor che il sito scaricano le immagini (dette anche tile) da dei server ufficiali per la visualizzazione della mappa. Tuttavia si può configurare un Tile Server locale che renderizza la mappa con le proprie modifiche fatte in locale.
 
-Tra gli strumenti disponibili nell'interfaccia di OpenStreetMap c'è anche il tool "Query features" indicato con l'icona ![](screenshots/query-tool.png). Questo strumento serve a ottenere dati OSM in una qualsiasi zona cliccata dal cursore. Per reperire velocemente questi dati il tool in questione utilizza un server provider di OverpassAPI.
+Tra gli strumenti disponibili nell'interfaccia di OpenStreetMap c'è anche il tool "Query features" indicato con l'icona ![](images/query-tool.png). Questo strumento serve a ottenere dati OSM in una qualsiasi zona cliccata dal cursore. Per reperire velocemente questi dati il tool in questione utilizza un server provider di OverpassAPI.
 Questa API è specializzata nel fare query in sola lettura sul database OSM in modo veloce ed efficiente.
 <div style="page-break-after: always;"></div>
 
@@ -183,11 +183,11 @@ Si è iniziato con Viale Francesco Redi. La modifica è stata semplice da realiz
 
 Di seguito viene mostrato il viale prima e dopo la modifica.
 
-![](screenshots/viale-redi-prima-iD.png)  |  ![](screenshots/viale-redi-prima-tiles.png)
+![](images/viale-redi-prima-iD.png)  |  ![](images/viale-redi-prima-tiles.png)
 :-------------------------:|:-------------------------:
 _Figura 1: Viale Redi dall'editor iD_ | _Figura 2: Viale Redi renderizzato prima delle modifiche_
 
-![](screenshots/viale-redi-dopo-iD.png)  |  ![](screenshots/viale-redi-dopo-tiles.png)
+![](images/viale-redi-dopo-iD.png)  |  ![](images/viale-redi-dopo-tiles.png)
 :-------------------------:|:-------------------------:
 _Figura 3: Viale Redi dall'editor iD dopo le modifiche_ | _Figura 4: Viale Redi renderizzato dopo le modifiche_
 
@@ -195,11 +195,11 @@ Si potrebbe quasi proporre come modifica ufficiale su OpenStreetMaps.
 
 Successivamente si è modificato il tratto di Viale Alderotti che interseca Via Borghi e le strade di accesso ai parcheggi di Careggi.
 
-<img src="screenshots/viale-alderotti-prima-iD.png" alt="image" width="400"/>|<img src="screenshots/viale-alderotti-prima-tiles.png" alt="image" width="400"/>
+<img src="images/viale-alderotti-prima-iD.png" alt="image" width="400"/>|<img src="images/viale-alderotti-prima-tiles.png" alt="image" width="400"/>
 :-------------------------:|:-------------------------:
 _Figura 5: Viale Alderotti dall'editor iD_ | _Figura 6: Viale Alderotti renderizzato prima delle modifiche_
 
-<img src="screenshots/viale-alderotti-dopo-iD.png" alt="image" width="400"/>|<img src="screenshots/viale-alderotti-dopo-tiles.png" alt="image" width="400"/>
+<img src="images/viale-alderotti-dopo-iD.png" alt="image" width="400"/>|<img src="images/viale-alderotti-dopo-tiles.png" alt="image" width="400"/>
 :-------------------------:|:-------------------------:
 _Figura 7: Viale Alderotti dall'editor iD dopo le modifiche_ | _Figura 8: Viale Alderotti renderizzato dopo le modifiche_
 
@@ -208,17 +208,17 @@ Tali restrizioni si possono applicare con il tool di iD mostrato in figura 13.
 
 Qui si è voluto provare a fare un test un po’ più alternativo: prendere le strade con più di una corsia che confluiscono in Piazza Dalmazia (nodo critico per la viabilità di Firenze) e dividerle in più strade a corsia unica.
 
-<img src="screenshots/dalmazia-prima-iD.png" alt="image" width="400"/>|<img src="screenshots/dalmazia-prima-tiles.png" alt="image" width="400"/>
+<img src="images/dalmazia-prima-iD.png" alt="image" width="400"/>|<img src="images/dalmazia-prima-tiles.png" alt="image" width="400"/>
 :-------------------------:|:-------------------------:
 _Figura 9: Piazza Dalmazia dall'editor iD_ | _Figura 10: Piazza Dalmazia renderizzato prima delle modifiche_
 
-<img src="screenshots/dalmazia-dopo-iD.png" alt="image" width="400"/>|<img src="screenshots/dalmazia-dopo-tiles.png" alt="image" width="400"/>
+<img src="images/dalmazia-dopo-iD.png" alt="image" width="400"/>|<img src="images/dalmazia-dopo-tiles.png" alt="image" width="400"/>
 :-------------------------:|:-------------------------:
 _Figura 11: Piazza Dalmazia dall'editor iD dopo le modifiche_ | _Figura 12: Piazza Dalmazia renderizzato dopo le modifiche_
 
 In questo esempio, oltre alla stessa criticità presente nel caso di Viale Alderotti (risolvibile sempre con il tool della figura 13), si ha anche il problema di sdoppiare altre entità come semafori, attraversamenti pedonali e intersezioni con i binari della tramvia.
 
-<img src="screenshots/tool-viabilita.png" alt="image" width="250"/>|<img src="screenshots/dalmazia-criticita-doppio-semaforo.png" alt="dalmazia-criticita-doppio-semaforo" width="310"/>
+<img src="images/tool-viabilita.png" alt="image" width="250"/>|<img src="images/dalmazia-criticita-doppio-semaforo.png" alt="dalmazia-criticita-doppio-semaforo" width="310"/>
 :-------------------------:|:-------------------------: 
 _Figura 13: Tool per modificare la viabilità_ | _Figura 14: Criticità doppio semaforo_
 
@@ -226,7 +226,7 @@ L’ultimo test è stato quello più problematico.
 
 È stato sdoppiato il senso di marcia in un tratto di Via di Santa Marta, e sono state riscontrate delle anomalie. La più importante è stata che nel tratto rappresentato sotto in figura la strada e la forma disegnata non coincidono.
 
-<img src="screenshots/via-santa-marta-sdoppiata-critic.png" alt="via-santa-marta-sdoppiata-critic" width="400"/>
+<img src="images/via-santa-marta-sdoppiata-critic.png" alt="via-santa-marta-sdoppiata-critic" width="400"/>
 
 _Figura 15: Anomalia Via di Santa Marta_
 

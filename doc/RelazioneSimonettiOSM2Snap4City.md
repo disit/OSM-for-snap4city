@@ -18,10 +18,10 @@ Nel diagramma a blocchi riportato sotto viene riassunta sinteticamente la strutt
 ![](diagramma-a-blocchi.svg)
 
 Il sito web di [OpenStreetMap](https://www.openstreetmap.org) è il software principale per visualizzare le mappe ed effettuare le modifiche.
-Tali modifiche però si fanno con l'editor iD, tool già integrato nel sito ma che necessita di preconfigurazione.
-Di default sia l'editor che il sito per vedere la mappa scaricano le immagini (dette anche tile) da dei server ufficiali. Tuttavia si può configurare un Tile Server locale che renderizza la mappa con le proprie modifiche fatte in locale.
+Tali modifiche si fanno con l'editor iD, tool già integrato nel sito ma che necessita di preconfigurazione.
+Di default, sia l'editor che il sito scaricano le immagini (dette anche tile) da dei server ufficiali per la visualizzazione della mappa. Tuttavia si può configurare un Tile Server locale che renderizza la mappa con le proprie modifiche fatte in locale.
 
-Tra gli strumenti disponibili nell'interfaccia di OpenStreetMap c'è anche il tool "Query features" indicato con l'icona ![](screenshots/query-tool.png). Questo strumento serve a ottenere dati OSM in una qualsiasi zona cliccata dal cursore, e per reperire questi dati velocemente utilizza un server provider di OverpassAPI.
+Tra gli strumenti disponibili nell'interfaccia di OpenStreetMap c'è anche il tool "Query features" indicato con l'icona ![](screenshots/query-tool.png). Questo strumento serve a ottenere dati OSM in una qualsiasi zona cliccata dal cursore. Per reperire velocemente questi dati il tool in questione utilizza un server provider di OverpassAPI.
 Questa API è specializzata nel fare query in sola lettura sul database OSM in modo veloce ed efficiente.
 <div style="page-break-after: always;"></div>
 
@@ -29,7 +29,7 @@ Questa API è specializzata nel fare query in sola lettura sul database OSM in m
 
 Per prima cosa è stato installato sulla macchina virtuale un clone del sito di OpenStreetMap e il tool grafico “iD Editor”. È stato sufficiente seguire la guida su https://github.com/openstreetmap/openstreetmap-website/blob/master/DOCKER.md, che permette di installarlo in un container Docker tramite Docker-compose.
 
-Per il progetto in questione è stata scaricata la mappa di Firenze in formato osm.pbf dal sito [https://extract.bbbike.org/](https://extract.bbbike.org/). Un’altra alternativa è il sito [HotExport](https://export.hotosm.org/en/v3/), tuttavia le mappe esportate sono prive di alcuni metadati tra cui le timestamps necessarie per impostare gli aggiornamenti automatici.
+Per questo caso d'uso è stata scaricata la mappa di Firenze in formato osm.pbf dal sito [https://extract.bbbike.org/](https://extract.bbbike.org/). Un’altra alternativa è il sito [HotExport](https://export.hotosm.org/en/v3/), ma le mappe esportate sono prive di alcuni metadati tra cui le timestamps necessarie per impostare gli aggiornamenti automatici qualora saranno necessari.
 
 La mappa selezionata è approssimativa, cioè contiene tutti i dati di Firenze ma anche dati parziali di comuni vicini. Questo perché i tool menzionati scaricano i dati selezionati da una boundingbox. Per query più elaborate si potrebbe provare a usare il tool [OverpassTurbo](https://overpass-turbo.eu/) [<sup>1</sup>](https://help.openstreetmap.org/questions/80335/find-cities-boundary-in-a-specific-country).
 
@@ -46,7 +46,7 @@ Tutta questa procedura di setup è racchiusa nello script `osm-website-setup.sh`
 
 Come primo test si è provato a cancellare degli edifici antistanti alla facoltà di Ingegneria a Santa Marta (in particolare gli edifici [#110964127](https://www.openstreetmap.org/way/110964127) e [#110964128](https://www.openstreetmap.org/way/110964128)).
 
-Osservando il changeset si nota subito che gli edifici sono delle entità di tipo “Way” con tag “building=yes” a cui sono associati dei _nodes_ che delimitano la forma dell’area occupata.
+Osservando il changeset si nota subito che gli edifici sono delle entità di tipo “Way” con tag `building=yes` a cui sono associati dei _nodes_ che delimitano la forma dell’area occupata.
 
 Se si visualizza l’area in modalità edit, gli edifici di fatto sono scomparsi e non più modificabili, ma se si ritorna in modalità di visualizzazione classica o se si imposta la mappa “OpenStreetMap (Standard)” sullo sfondo, gli edifici appena cancellati sono ancora visualizzabili.
 
@@ -54,7 +54,7 @@ Questo è dovuto al fatto che lo sfondo è un’immagine renderizzata dai dati d
 
 Ritornando in modalità di visualizzazione, puntando il tool “Query features” sulla zona interessata, gli edifici sono ancora identificabili. Però se si va a cliccare su uno di essi nel menù a sinistra, viene mostrato che tale entità è stata cancellata in un changeset.
 
-Ciò si riflette nello schema database di OSM, in quanto nella tabella “current_ways”, la riga con id 110964128 è ancora presente ma è stata aggiornata con l’ultimo changeset e marcata “invisibile”. Mentre nella tabella “ways” ci sono più righe con quel ID, ciascuna per ogni versione di quella entità. La tabella “ways” praticamente tiene conto della storia delle varie entità[<sup>2</sup>](https://help.openstreetmap.org/questions/62670/way_nodes-and-current_way_nodes).
+Ciò si riflette nello schema database di OSM, in quanto nella tabella “current_ways” la riga con id 110964128 è ancora presente ma è stata aggiornata con l’ultimo changeset e marcata “invisibile”. Mentre nella tabella “ways” ci sono più righe con quel ID, ciascuna per ogni versione di quella entità. La tabella “ways” praticamente tiene conto della storia delle varie entità[<sup>2</sup>](https://help.openstreetmap.org/questions/62670/way_nodes-and-current_way_nodes).
 
 ### Creazione nuova entità
 
@@ -63,11 +63,11 @@ Dopo aver inviato il changeset, come nel caso precedente i cambiamenti non si ri
 
 Tuttavia la cosa che ci si aspettava è che in modalità view il tool “Query features” riuscisse a trovare le due entità appena create. Ciò non è avvenuto.
 
-Per accedere alle informazioni delle entità è stato necessario manipolare l’URL manualmente, inserendo nella barra degli indirizzi `http://#ip:30000/way/#id` che nel setup in questione è `http://localhost:30000/way/1`. Ottenere l’id delle entità non è stato immediato, infatti è stato necessario navigare nel profilo dell’utente sotto la sezione “My Edits”.
+Per accedere alle informazioni delle entità è stato necessario manipolare l’URL manualmente, inserendo nella barra degli indirizzi `http://<host>:<port>/way/<id>` che nel setup in questione è `http://localhost:3000/way/1`. Ottenere l’id delle entità non è stato immediato, infatti è stato necessario navigare nel profilo dell’utente sotto la sezione “My Edits”.
 
-Questo succede perché il tool in questione utilizza [OverpassAPI](https://wiki.openstreetmap.org/wiki/Overpass_API), un’API di accesso ai dati OSM ottimizzata per la sola lettura[<sup>3</sup>](https://wiki.openstreetmap.org/wiki/Query_features_tool) e che fa uso di dati mirror di OSM.
+Questo succede perché il tool in questione utilizza [OverpassAPI](https://wiki.openstreetmap.org/wiki/Overpass_API) che fa uso di dati mirror di OSM [<sup>3</sup>](https://wiki.openstreetmap.org/wiki/Query_features_tool).
 
-Il sito locale di OSM comunque permette di cambiare il provider di questo servizio. È sufficiente cambiare l’URL in `/config/settings.yml` alla voce ‘overpass_url’. Quindi potrebbe essere possibile configurare un server di Overpass in locale e agganciarlo al sito [<sup>4</sup>](https://dev.overpass-api.de/overpass-doc/en/more_info/setup.html).
+Il sito locale di OSM comunque permette di cambiare il provider di questo servizio. È sufficiente cambiare l’URL in `/config/settings.yml` alla voce ‘overpass_url’. Quindi è possibile configurare un server di Overpass in locale e agganciarlo al sito [<sup>4</sup>](https://dev.overpass-api.de/overpass-doc/en/more_info/setup.html).
 
 ### Database schema
 
@@ -100,10 +100,10 @@ Lo script `osm-tile-server-setup.sh` clona e configura il server come descritto 
   
 Di default il sito web di OSM utilizza le proprie tile per la modalità visualizzazione e per l'editor iD. Per utilizzare le nostre tile bisogna:
 1. Modificare la linea 17 di `openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js` con `url: 'http://<host>:<port>/tile/{z}/{x}/{y}.png',` specificando l'ip e la porta del tile server [<sup>5</sup>](https://help.openstreetmap.org/questions/73488/change-tiles-of-local-openstreetmap-website).
-2. Entrare nell'editor iD, cliccare a destra su "Background Settings", cambiare il background a custom e inserire il medesimo URL di prima, ovvero 'http://<host>:<port>/tile/{z}/{x}/{y}.png'.
+2. Entrare nell'editor iD, cliccare a destra su "Background Settings", cambiare il background a custom e inserire il medesimo URL di prima, ovvero `http://<host>:<port>/tile/{z}/{x}/{y}.png`.
     
 #### Aggiornamento delle tile
-L’aggiornamento delle tile non è un’azione di norma immediata. Al momento è stata individuata una procedura per aggiornare il database e le tile che sfrutta il programma _osm2pgsql_ incluso nel container.
+L’aggiornamento delle tile non è un’azione di norma immediata. Al momento è stata individuata una procedura per aggiornare il database e le tile che sfrutta il programma _osm2pgsql_ incluso nel container.  Lo script `launch-update-task.sh` automatizza questa operazione effettuando i seguenti step che possono essere svolti manualmente: 
 
 -   Montare una cartella esterna su `/data/updates` o altro percorso a scelta.  
     Siccome si usa docker-compose, è bastato aggiungere la riga `-./osm-updates:/data/updates` sotto la riga `- osm-tiles:/data/tiles/`
@@ -114,8 +114,6 @@ L’aggiornamento delle tile non è un’azione di norma immediata. Al momento �
     
 -   Lanciare il comando `docker exec -it <container-id> bash autoimport-updates.sh updates.osc.gz` per avviare la procedura.  
     Questo è uno script che è stato scritto per automatizzare la procedura di importazione degli aggiornamenti e scadenza delle tile.
-    
-    Lo script `launch-update-task.sh` esterno al container facilita la procedura trovando l’id del container e lanciando il comando sopracitato.
 
 Con _osmosis_ la procedura per generare i diffs tra due file pbf è la seguente:
 
@@ -154,7 +152,7 @@ Di seguito sono illustrati gli step per inizializzare tale componente:
 
 -   Modificare il file docker-compose.yml come descritto:
     
-    - Riga 13: ` - 80:80` (facoltativo, ma per praticità ho impostato la porta esterna a quella di default per protocollo HTTP)
+    - Riga 13: ` - 80:80` (facoltativo, ma per praticità è stata impostata la porta esterna a quella di default del protocollo HTTP)
     
     - Riga 16: ` - ./overpass-db:/db `
     

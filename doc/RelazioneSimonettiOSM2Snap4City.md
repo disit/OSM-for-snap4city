@@ -25,7 +25,7 @@ Questa API è specializzata nel fare query in sola lettura sul database OSM in m
 
 ### Setup
 
-Per prima cosa è stato installato sulla macchina virtuale un clone del sito di OpenStreetMap e il tool grafico “iD Editor”. È stato sufficiente seguire la guida su [GitHub](https://github.com/openstreetmap/openstreetmap-website/blob/master/DOCKER.md), che permette di installarlo in un container Docker tramite Docker-compose.
+Per prima cosa è stato installato sulla macchina virtuale un clone del sito di OpenStreetMap e il tool grafico “iD Editor”. È stato sufficiente seguire la guida su https://github.com/openstreetmap/openstreetmap-website/blob/master/DOCKER.md, che permette di installarlo in un container Docker tramite Docker-compose.
 
 Per il progetto in questione è stata scaricata la mappa di Firenze in formato osm.pbf dal sito [https://extract.bbbike.org/](https://extract.bbbike.org/). Un’altra alternativa è il sito [HotExport](https://export.hotosm.org/en/v3/), tuttavia le mappe esportate sono prive di alcuni metadati tra cui le timestamps necessarie per impostare gli aggiornamenti automatici.
 
@@ -37,8 +37,8 @@ Occasionalmente durante la fase di import del file osm.pbf si riscontravano erro
 
 - `docker-compose run --rm web bundle exec rails db:migrate` 
 
-Una volta ingerito il file pbf, viene avviato il container per completare la configurazione dell’editor, i cui step sono mostrati nel documento [CONFIGURE.md](https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md).  
-La procedura di setup è racchiusa nello script `osm-website-setup.sh`, eccezion fatta per la registrazione e configurazione manuale dell'utente di iD.
+Una volta ingerito il file pbf, viene avviato il container per completare la configurazione dell’editor, i cui step sono mostrati nel documento [CONFIGURE.md](https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md) della repository.  
+Tutta questa procedura di setup è racchiusa nello script `osm-website-setup.sh`, eccezion fatta per la registrazione e configurazione manuale dell'utente di iD.
 
 ### Primi test – cancellazione di entità
 
@@ -88,15 +88,17 @@ Le modifiche fatte con l’editor iD finiscono sia nella tabella “current” c
 Per renderizzare le nuove tile c’è bisogno di un tile server. Tra le varie alternative è stato scelto di fare un [fork](https://github.com/SimoMett/openstreetmap-tile-server) di [openstreetmap-tile-server di Overv](https://github.com/Overv/openstreetmap-tile-server), che è la soluzione al momento più facile da mettere in piedi.  
 Lo script `osm-tile-server-setup.sh` clona e configura il server come descritto nei seguenti passaggi:
 
--   Clonare la [repository](https://github.com/SimoMett/openstreetmap-tile-server) ed eseguire il comando `docker-compose build`.
+- Clonare la [repository](https://github.com/SimoMett/openstreetmap-tile-server) ed eseguire il comando `docker-compose build`.
     
--   Seguire i passi del Readme.md della repository, incluso la creazione del volume ‘osm-tiles’ usato per la cache delle tile già renderizzate.
+- Seguire i passi del Readme.md della repository, incluso la creazione del volume ‘osm-tiles’ usato per la cache delle tile già renderizzate.
     
--   Una volta messo in piedi il container, modificare la linea 17 di `openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js` con `url: 'http://localhost:8008/tile/{z}/{x}/{y}.png',` o altro URL a scelta [<sup>5</sup>](https://help.openstreetmap.org/questions/73488/change-tiles-of-local-openstreetmap-website).
-
--   Creare la cartella `osm-updates`.
+- Una volta messo in piedi il container, Creare la cartella `osm-updates`.
 
 - Importare un file pbf con il comando `./import-pbf.sh /path/to/file.osm.pbf` specificando il percorso COMPLETO.
+  
+Di default il sito web di OSM utilizza le proprie tile per la modalità visualizzazione e per l'editor iD. Per utilizzare le nostre tile bisogna:
+1. Modificare la linea 17 di `openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js` con `url: 'http://<host>:<port>/tile/{z}/{x}/{y}.png',` specificando l'ip e la porta del tile server [<sup>5</sup>](https://help.openstreetmap.org/questions/73488/change-tiles-of-local-openstreetmap-website).
+2. Entrare nell'editor iD, cliccare a destra su "Background Settings", cambiare il background a custom e inserire il medesimo URL di prima, ovvero 'http://<host>:<port>/tile/{z}/{x}/{y}.png'.
     
 #### Aggiornamento delle tile
 L’aggiornamento delle tile non è un’azione di norma immediata. Al momento è stata individuata una procedura per aggiornare il database e le tile che sfrutta il programma _osm2pgsql_ incluso nel container.

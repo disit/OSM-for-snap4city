@@ -86,19 +86,17 @@ Le modifiche fatte con l’editor iD finiscono sia nella tabella “current” c
 ### OSM Tile Server
 
 Per renderizzare le nuove tile c’è bisogno di un tile server. Tra le varie alternative è stato scelto di fare un [fork](https://github.com/SimoMett/openstreetmap-tile-server) di [openstreetmap-tile-server di Overv](https://github.com/Overv/openstreetmap-tile-server), che è la soluzione al momento più facile da mettere in piedi.  
-Lo script `osm-tile-server-setup.sh` clona e configura il server.
-
-Dunque:
+Lo script `osm-tile-server-setup.sh` clona e configura il server come descritto nei seguenti passaggi:
 
 -   Clonare la [repository](https://github.com/SimoMett/openstreetmap-tile-server) ed eseguire il comando `docker-compose build`.
     
 -   Seguire i passi del Readme.md della repository, incluso la creazione del volume ‘osm-tiles’ usato per la cache delle tile già renderizzate.
     
--   Una volta messo in piedi il container, modificare la linea 17 di `openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js` con `url: 'http://localhost:8008/tile/{z}/{x}/{y}.png',` [<sup>5</sup>](https://help.openstreetmap.org/questions/73488/change-tiles-of-local-openstreetmap-website).
+-   Una volta messo in piedi il container, modificare la linea 17 di `openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js` con `url: 'http://localhost:8008/tile/{z}/{x}/{y}.png',` o altro URL a scelta [<sup>5</sup>](https://help.openstreetmap.org/questions/73488/change-tiles-of-local-openstreetmap-website).
 
 -   Creare la cartella `osm-updates`.
 
-- Importare un file pbf con il comando `./import-pbf.sh /path/to/file.osm.pbf` specificando COMPLETO
+- Importare un file pbf con il comando `./import-pbf.sh /path/to/file.osm.pbf` specificando il percorso COMPLETO.
     
 #### Aggiornamento delle tile
 L’aggiornamento delle tile non è un’azione di norma immediata. Al momento è stata individuata una procedura per aggiornare il database e le tile che sfrutta il programma _osm2pgsql_ incluso nel container.

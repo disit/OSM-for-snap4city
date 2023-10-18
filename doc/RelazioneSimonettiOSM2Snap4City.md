@@ -41,6 +41,7 @@ Occasionalmente durante la fase di import del file osm.pbf si riscontravano erro
 
 Una volta ingerito il file pbf, viene avviato il container per completare la configurazione dell’editor, i cui step sono mostrati nel documento [CONFIGURE.md](https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md) della repository.  
 Tutta questa procedura di setup è racchiusa nello script `osm-website-setup.sh`, eccezion fatta per la registrazione e configurazione manuale dell'utente di iD.
+Lo script `open-rails-console.sh` è un alias del comando (troppo verboso) `docker-compose run --rm web bundle exec rails console` che apre la console del database.
 
 ### Primi test – cancellazione di entità
 

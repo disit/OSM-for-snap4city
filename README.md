@@ -1,5 +1,5 @@
 # Guida all'installazione delle componenti di OSM
-Questa repository contiene gli script per inizializzare l'editor iD di OpenStreetMap e il tile server.
+Questa repository contiene script per inizializzare e mantenere l'editor iD di OpenStreetMap e il tile server.
 
 ## Requisiti
 Questa repo fa uso dei seguenti software:

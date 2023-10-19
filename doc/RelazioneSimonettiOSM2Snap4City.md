@@ -131,6 +131,9 @@ La procedura di aggiornamento delle tile appena proposta funziona bene, però è
 
 La documentazione di Osmosis su https://wiki.openstreetmap.org/wiki/Osmosis/Detailed_Usage cita diverse funzionalità interessanti, come `--read-apidb-change (--rdc)` e tutta l'integrazione con PostGis. Infatti il task `--read-apidb-change` è un modo più diretto e più configurabile per ottenere i changesets. Lo script `get-updates-by-time.sh` implementa questa funzionalità: estrae i changesets effettuati in un intervallo di tempo. Basta eseguire il comando con la seguente sintassi: `./get-updates-by-time.sh [data in formato yyyy-MM-dd_HH:mm:ss]` per ottenere i changesets da una certa data in poi, oppure `./get-updates-by-time.sh [inizio intervallo in yyyy-MM-dd_HH:mm:ss] [fine intervallo in yyyy-MM-dd_HH:mm:ss]`.
 
+### Task periodico
+Lo script `update-tiles-periodic-task.sh` può essere invocato periodicamente con programmi tipo Crontab per schedulare updates periodici.
+
 ### Overpass API
 
 Nella sezione “Creazione nuove entità” si è evidenziata l’importanza di inizializzare un proprio provider di Overpass per accedere alle modifiche effettuate in locale.

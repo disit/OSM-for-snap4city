@@ -1,5 +1,5 @@
  set -e
-UPDATES_DEST_PATH="openstreetmap-tile-server/osm-updates/updates.osc.gz"
+UPDATES_DEST_PATH="../openstreetmap-tile-server/osm-updates/updates.osc.gz"
 OSC_FILE_NAME=update-`date +%m-%d-%Y-%H-%M`.osc.gz
 
 cd openstreetmap-website
@@ -12,7 +12,7 @@ fi
 cp -f $OSC_FILE_NAME $UPDATES_DEST_PATH
 cd ../openstreetmap-tile-server
 ./launch-update-task.sh
-cd ..
+cd ../openstreetmap-website
 rm last-update.txt
 echo "$(date +%Y-%m-%d_%H-%M-%S)" >> last-update.txt
 exit 0

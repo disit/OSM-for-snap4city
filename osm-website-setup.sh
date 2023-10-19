@@ -37,6 +37,5 @@ chmod +x export-to-pbf.sh
 echo "Procedere con la registrazione del proprio utente e con la configurazione dell'editor iD su http://localhost:3000/"
 echo "Vedi 'Managing Users' e 'OAuth Consumer Keys' in https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md"
 echo "Lo script \"open-rails-console.sh\" può aiutare ad aprire la console del container"
-cd ..
 echo "$(date +%Y-%m-%d_%H-%M-%S)" >> last-update.txt
 exit 0

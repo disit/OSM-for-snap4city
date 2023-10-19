@@ -14,5 +14,5 @@ cd ../openstreetmap-tile-server
 ./launch-update-task.sh
 cd ../openstreetmap-website
 rm last-update.txt
-echo "$(date +%Y-%m-%d_%H-%M-%S)" >> last-update.txt
+echo "$(date +%Y-%m-%d_%H:%M:%S)" >> last-update.txt
 exit 0

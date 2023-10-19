@@ -166,7 +166,7 @@ Di seguito sono illustrati gli step per inizializzare tale componente:
 
     - Commentare riga 21
     
-    - Cancellare righe 24, 25 e 26
+    - Commentare righe 24, 25 e 26
     
 -   Nella cartella dell’editor modificare il file `config/settings.yml` alla voce “overpass_url” e inserire il link su dove viene esposta l’API, che di default è `http://localhost/api/interpreter`.
     

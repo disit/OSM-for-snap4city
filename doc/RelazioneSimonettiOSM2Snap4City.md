@@ -234,6 +234,9 @@ L’ultimo test è stato quello più problematico.
 
 _Figura 15: Anomalia Via di Santa Marta_
 
+È possibile che questo sia dovuto alla presenza di troppi "building" nelle vicinanze e poco spazio a sufficienza che impedisce la corretta formazione della curva.
+
+
 ### Fare revert di un changeset
 
 Il revert delle modifiche non è un operazione immediata come potrebbe essere per esempio con i commit su Git. Queste sono alcune fonti che parlano di ciò:

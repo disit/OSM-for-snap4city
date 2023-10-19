@@ -1,4 +1,4 @@
- set -e
+set -e
 UPDATES_DEST_PATH="../openstreetmap-tile-server/osm-updates/updates.osc.gz"
 OSC_FILE_NAME=update-`date +%m-%d-%Y-%H-%M`.osc.gz
 

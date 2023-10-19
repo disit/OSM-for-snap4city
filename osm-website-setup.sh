@@ -22,7 +22,10 @@ cp leaflet.osm.js ../openstreetmap-website/vendor/assets/leaflet/
 cd ../openstreetmap-website
 cp config/example.storage.yml config/storage.yml
 cp config/docker.database.yml config/database.yml
-touch config/settings.local.yml
+echo "# Default editor
+#default_editor: \"id\"
+# OAuth 2 Client ID for iD
+#id_application: \"client id here\"" >> config/settings.local.yml
 docker-compose build
 docker-compose up -d
 docker-compose run --rm web bundle exec rails db:migrate

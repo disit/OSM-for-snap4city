@@ -4,7 +4,7 @@ OSC_FILE_NAME=update-`date +%m-%d-%Y-%H-%M`.osc.gz
 
 cd openstreetmap-website
 if test -f "last-update.txt"; then
-	docker-compose run --rm web osmosis --read-apidb-change $(cat auth-file.txt) intervalBegin="$(cat last-update.txt)" --wxc "$OSC_FILE_NAME"
+	docker-compose run --rm web osmosis --read-apidb-change $(cat auth-file.txt) intervalBegin="$(cat last-update.txt)" readFullHistory=yes --wxc "$OSC_FILE_NAME"
 else
 	echo "last-update.txt non esiste"
 	exit 1

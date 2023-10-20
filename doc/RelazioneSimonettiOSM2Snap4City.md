@@ -133,6 +133,11 @@ La documentazione di Osmosis su https://wiki.openstreetmap.org/wiki/Osmosis/Deta
 
 #### Task periodico
 Lo script `update-tiles-periodic-task.sh` può essere invocato periodicamente con programmi tipo Crontab per schedulare updates periodici.
+##### Attenzione
+Questo script reperisce l'ora dell'ultimo aggiornamento dal file `last-update.txt`. È importante che i container dell'editor (ovvero `openstreetmap-website-web` e `openstreetmap-website-db`) abbiano la timezone settata correttamente.
+Si può procedere con uno dei due metodi:
+- Eseguire `docker exec -it <container> bash` e configurare la timezone con il comando `dpkg-reconfigure tzdata`.
+- Definire la variabile d'ambiente `TZ: Europe/Rome` nel `docker-compose.yml` del sito web nelle sezioni dei servizi "web" e "db".
 
 ### Overpass API
 

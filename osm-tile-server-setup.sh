@@ -7,4 +7,4 @@ cd openstreetmap-tile-server
 mkdir osm-updates
 docker-compose build
 chmod +x import-pbf.sh
-./import-pbf.sh `realpath ../Firenze.osm.pbf`
+./import-pbf.sh $(realpath ../Firenze.osm.pbf)

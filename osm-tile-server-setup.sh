@@ -7,3 +7,4 @@ docker-compose build map
 cd openstreetmap-tile-server
 chmod +x import-pbf.sh
 ./import-pbf.sh $(realpath ../Firenze.osm.pbf)
+echo "$(date -u +%Y-%m-%d_%H:%M:%S)" > last-update.txt

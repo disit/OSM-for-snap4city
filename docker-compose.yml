@@ -1,20 +1,6 @@
 version: "3"
 
 services:
-  map:
-    # image: overv/openstreetmap-tile-server
-    build: ./openstreetmap-tile-server
-    volumes:
-      - osm-data:/data/database/
-      - osm-tiles:/data/tiles/
-      - ./openstreetmap-tile-server/osm-updates:/data/updates # edit this line as you like
-    ports:
-      - "8080:80"
-      - "5432:5432"
-    environment:
-      - THREADS=4
-      - "OSM2PGSQL_EXTRA_ARGS=-C 4096"
-    command: "run"
   web:
     build:
       context: ./openstreetmap-website
@@ -25,9 +11,9 @@ services:
       # Prevent these directories from mounting so they're not shared between host OS and Docker
       - /app/node_modules/
       # Mount a tmp directory that will persist between runs
-      - web-tmp:/app/tmp
+      - osm-website_web-tmp:/app/tmp
       # Mount a storage directory that will persist between runs
-      - web-storage:/app/storage
+      - osm-website_web-storage:/app/storage
     tmpfs:
       /tmp/pids/
     ports:
@@ -47,13 +33,28 @@ services:
       POSTGRES_DB: openstreetmap
     volumes:
       # Mount the Postgres data directory so it persists between runs
-      - db-data:/var/lib/postgresql/data
+      - osm-website_db-data:/var/lib/postgresql/data
+  map:
+    build: ./openstreetmap-tile-server
+    volumes:
+      - osm-data:/data/database/
+      - osm-tiles:/data/tiles/
+      - ./openstreetmap-tile-server/osm-updates:/data/updates # edit this line as you like
+    ports:
+      - "8080:80"
+    environment:
+      - THREADS=4
+      - "OSM2PGSQL_EXTRA_ARGS=-C 4096"
+    command: "run"
 
 volumes:
   osm-data:
     external: true
   osm-tiles:
     external: true
-  web-tmp:
-  web-storage:
-  db-data:
+  osm-website_web-tmp:
+    external: true
+  osm-website_web-storage:
+    external: true
+  osm-website_db-data:
+    external: true

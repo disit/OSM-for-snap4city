@@ -19,23 +19,22 @@ cd website-scripts
 chmod +x configure-leaflet-osm-js.sh
 ./configure-leaflet-osm-js.sh >> leaflet.osm.js
 cp leaflet.osm.js ../openstreetmap-website/vendor/assets/leaflet/
-cd ../openstreetmap-website
-cp config/example.storage.yml config/storage.yml
-cp config/docker.database.yml config/database.yml
+cd ..
+cp openstreetmap-website/config/example.storage.yml openstreetmap-website/config/storage.yml
+cp openstreetmap-website/config/docker.database.yml openstreetmap-website/config/database.yml
 echo "# Default editor
 #default_editor: \"id\"
 # OAuth 2 Client ID for iD
-#id_application: \"client id here\"" >> config/settings.local.yml
-docker-compose build
-docker-compose up -d
+#id_application: \"client id here\"" >> openstreetmap-website/config/settings.local.yml
+docker volume create osm-website_web-tmp && docker volume create osm-website_web-storage && docker volume create osm-website_db-data
+docker-compose build db web
 docker-compose run --rm web bundle exec rails db:migrate
 chmod +x import-pbf.sh
 ./import-pbf.sh Firenze.osm.pbf
-rm -f Firenze.osm.pbf
 chmod +x export-to-pbf.sh
 ./export-to-pbf.sh Firenze-latest.osm.pbf
 echo "Procedere con la registrazione del proprio utente e con la configurazione dell'editor iD su http://localhost:3000/"
 echo "Vedi 'Managing Users' e 'OAuth Consumer Keys' in https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md"
 echo "Lo script \"open-rails-console.sh\" può aiutare ad aprire la console del container"
-echo "$(date -u +%Y-%m-%d_%H:%M:%S)" >> last-update.txt
+echo "$(date -u +%Y-%m-%d_%H:%M:%S)" >> openstreetmap-website/last-update.txt
 exit 0

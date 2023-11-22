@@ -8,4 +8,6 @@ CHANGESETS_COUNT=$(osmium fileinfo -e -g data.count.changesets openstreetmap-web
 if [[ $WAYS_COUNT == 0 && $NODES_COUNT == 0 && $RELATIONS_COUNT == 0 && $CHANGESETS_COUNT == 0 ]] ; then
 	echo Nessun aggiornamento
 	rm -f $OSC_FILE
+else
+	echo TODO aggiornamento
 fi 

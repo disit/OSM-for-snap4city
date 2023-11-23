@@ -9,7 +9,11 @@ RELATIONS_COUNT=$(osmium fileinfo -e -g data.count.relations openstreetmap-websi
 CHANGESETS_COUNT=$(osmium fileinfo -e -g data.count.changesets openstreetmap-website/$OSC_FILE)
 if [[ $WAYS_COUNT == 0 && $NODES_COUNT == 0 && $RELATIONS_COUNT == 0 && $CHANGESETS_COUNT == 0 ]] ; then
 	echo "Nessun aggiornamento disponibile"
+	rm -f openstreetmap-website/$OSC_FILE
 else
-	echo "Aggiornamento disponibile!"
+	echo "Aggiornamento avviato"
+	mv -f openstreetmap-website/$OSC_FILE openstreetmap-tile-server/osm-updates/updates.osc.gz
+	cd openstreetmap-tile-server
+	./launch-update-task.sh
+	echo "Aggiornamento concluso con successo"
 fi
-rm -f openstreetmap-website/$OSC_FILE

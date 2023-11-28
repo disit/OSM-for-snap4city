@@ -5,4 +5,5 @@ echo "  user.activate!"
 echo "  user.roles.create(:role => \"administrator\", :granter_id => user.id)"
 echo "  user.save!"
 echo "###############"
+cd ..
 docker-compose run --rm web bundle exec rails console

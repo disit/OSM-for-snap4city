@@ -13,6 +13,5 @@ cp -f $OSC_FILE_NAME $UPDATES_DEST_PATH
 cd ../openstreetmap-tile-server
 ./launch-update-task.sh
 cd ../openstreetmap-website
-rm last-update.txt
-echo "$(date -u +%Y-%m-%d_%H:%M:%S)" >> last-update.txt
+echo "$(date -u +%Y-%m-%d_%H:%M:%S)" > last-update.txt
 exit 0

@@ -1,0 +1,2 @@
+TILE_SERVER_IP=http://matteo-mac:8080
+ 

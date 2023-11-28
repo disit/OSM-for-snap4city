@@ -14,7 +14,7 @@ L.OSM.TileLayer = L.TileLayer.extend({
 
 L.OSM.Mapnik = L.OSM.TileLayer.extend({
   options: {
-    url: '`cat put-ip-here.txt`/tile/{z}/{x}/{y}.png',
+    url: '$1/tile/{z}/{x}/{y}.png',
     maxZoom: 19
   }
 });

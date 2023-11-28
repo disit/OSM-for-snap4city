@@ -1,5 +1,6 @@
-if [ "$(cat website-scripts/put-ip-here.txt)" = "http://localhost:8008" ]; then
-	echo "È necessario inserire l'indirizzo ip e la porta del tile server nel file \"website-scripts/put-ip-here.txt\" "
+LEAFLET_TILE_SERVER_IP=$(cat osm-website-install-configs.txt | grep "TILE_SERVER_IP" | cut -c $(( $(expr length TILE_SERVER_IP=) + 1 ))-)
+if [ "$LEAFLET_TILE_SERVER_IP" = "http://default:8080" ]; then
+	echo "È necessario inserire l'indirizzo ip e la porta del tile server nel file \"osm-website-install-configs.txt\" "
 	echo "Esempio: http://192.168.178.10:8008 oppure http://<hostname>:<porta>"
 	exit 1
 fi
@@ -15,8 +16,7 @@ cp website-scripts/open-rails-console.sh openstreetmap-website
 cp Firenze.osm.pbf openstreetmap-website
 cd website-scripts
 chmod +x configure-leaflet-osm-js.sh
-./configure-leaflet-osm-js.sh >> leaflet.osm.js
-cp leaflet.osm.js ../openstreetmap-website/vendor/assets/leaflet/
+./configure-leaflet-osm-js.sh $LEAFLET_TILE_SERVER_IP > ../openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js
 cd ..
 cp openstreetmap-website/config/example.storage.yml openstreetmap-website/config/storage.yml
 cp openstreetmap-website/config/docker.database.yml openstreetmap-website/config/database.yml

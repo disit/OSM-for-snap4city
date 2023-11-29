@@ -27,12 +27,11 @@ Questa API è specializzata nel fare query in sola lettura sul database OSM in m
 
 ### Setup
 
-Per prima cosa è stato installato sulla macchina virtuale un clone del sito di OpenStreetMap e il tool grafico “iD Editor”. È stato sufficiente seguire la guida su https://github.com/openstreetmap/openstreetmap-website/blob/master/DOCKER.md, che permette di installarlo in un container Docker tramite Docker-compose.
+Per prima cosa è stato installato sulla macchina virtuale un clone del sito di OpenStreetMap con il tool grafico integrato “iD Editor”. È stato sufficiente seguire la guida su https://github.com/openstreetmap/openstreetmap-website/blob/master/DOCKER.md, che permette di installarlo in un container Docker tramite Docker-compose. Di seguito è raffigurato un diagramma di flusso che riassume tutti gli step seguiti per inizializzare il sito.
 
 ![](images/website-setup.drawio.svg)
 
-TODO setup utente
-
+Per configurare il primo utente e per abilitare l'editor basta seguire la guida sotto:
 ![](images/setup-utente-editor.drawio.svg)
 
 Per questo caso d'uso è stata scaricata la mappa di Firenze in formato osm.pbf dal sito [https://extract.bbbike.org/](https://extract.bbbike.org/). Un’altra alternativa è il sito [HotExport](https://export.hotosm.org/en/v3/), ma le mappe esportate sono prive di alcuni metadati tra cui le timestamps necessarie per impostare gli aggiornamenti automatici qualora saranno necessari.

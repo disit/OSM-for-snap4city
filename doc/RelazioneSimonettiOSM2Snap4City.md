@@ -249,6 +249,8 @@ Il revert delle modifiche non è un operazione immediata come potrebbe essere pe
 - [https://wiki.openstreetmap.org/wiki/Change_rollback](https://wiki.openstreetmap.org/wiki/Change_rollback)
 - [https://wiki.openstreetmap.org/wiki/Osm-revert](https://wiki.openstreetmap.org/wiki/Osm-revert)
 
+In ogni caso, se si sbaglia a fare delle modifiche bisogna annullarle manualmente o eseguire uno dei tanti script per il revert delle modifiche. Quindi bisogna stare attenti alle modifiche che si vuole apportare. Una volta inviate i changesets questi vengono applicati subito sul database, senza alcun processo di approvazione da parte degli amministratori.
+
 ### Altre fonti
 
 1. https://help.openstreetmap.org/questions/80335/find-cities-boundary-in-a-specific-country  

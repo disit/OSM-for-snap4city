@@ -1,10 +1,17 @@
-LEAFLET_TILE_SERVER_IP=$(cat osm-website-install-configs.txt | grep "TILE_SERVER_IP" | cut -c $(( $(expr length TILE_SERVER_IP=) + 1 ))-)
-if [ "$LEAFLET_TILE_SERVER_IP" = "http://default:8080" ]; then
-	echo "È necessario inserire l'indirizzo ip e la porta del tile server nel file \"osm-website-install-configs.txt\" "
-	echo "Esempio: http://192.168.178.10:8008 oppure http://<hostname>:<porta>"
+set -e
+LEAFLET_TILE_SERVER_IP=http://$(hostname):8080/
+if [[ $# -eq 2 && $1 == "--bind-ip" ]]; then
+	LEAFLET_TILE_SERVER_IP=$2
+elif [[ $# -ne 0 ]]; then
+	echo "Corretto utilizzo:"
+	echo "-  ./osm-website-setup.sh"
+	echo "-  ./osm-website-setup.sh --bind-ip <url:port>"
 	exit 1
 fi
-set -e
+if [[ $# -eq 0 ]]; then
+	echo "Indirizzo IP del tile server non specificato. È stato impostato quello di default: $LEAFLET_TILE_SERVER_IP"
+fi
+
 git clone https://github.com/openstreetmap/openstreetmap-website.git
 echo "Setup openstreetmap-website"
 cp website-scripts/auth-file.txt openstreetmap-website

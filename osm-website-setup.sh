@@ -31,6 +31,7 @@ echo "# Default editor
 #default_editor: \"id\"
 # OAuth 2 Client ID for iD
 #id_application: \"client id here\"" >> openstreetmap-website/config/settings.local.yml
+docker volume create osm-data && docker volume create osm-tiles
 docker volume create osm-website_web-tmp && docker volume create osm-website_web-storage && docker volume create osm-website_db-data
 docker-compose build db web
 docker-compose run --rm web bundle exec rails db:migrate

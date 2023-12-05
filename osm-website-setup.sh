@@ -1,4 +1,8 @@
 set -e
+if [ ! -f Firenze.osm.pbf ]; then
+	curl -o Firenze.osm.pbf https://osmit-estratti.wmcloud.org/dati/poly/comuni/pbf/048017_Firenze.osm.pbf
+fi
+
 LEAFLET_TILE_SERVER_IP=http://$(hostname):8080/
 if [[ $# -eq 2 && $1 == "--bind-url" ]]; then
 	LEAFLET_TILE_SERVER_IP=$2

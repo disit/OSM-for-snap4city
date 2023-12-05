@@ -6,6 +6,7 @@ Questa repo fa uso dei seguenti software:
 - Docker
 - Docker-compose
 - Osmosis (https://wiki.openstreetmap.org/wiki/Osmosis/Installation)
+- Osmium (https://osmcode.org/osmium-tool/)
 
 ## Inizializzazione tile server
 - Eseguire `osm-tile-server-setup.sh`.  Questo script clona questa [repository](https://github.com/SimoMett/openstreetmap-tile-server) e di default importa automaticamente `Firenze.osm.pbf` nel suo database. Se si preferisce un altro file, modificare lo script.

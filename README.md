@@ -6,6 +6,7 @@ Questa repo fa uso dei seguenti software:
 - Docker
 - Docker-compose
 - Osmosis (https://wiki.openstreetmap.org/wiki/Osmosis/Installation)
+- Osmium (https://osmcode.org/osmium-tool/)
 
 ## Inizializzazione tile server
 - Eseguire `osm-tile-server-setup.sh`.  Questo script clona questa [repository](https://github.com/SimoMett/openstreetmap-tile-server) e di default importa automaticamente `Firenze.osm.pbf` nel suo database. Se si preferisce un altro file, modificare lo script.
@@ -29,4 +30,4 @@ Il primo file .pbf è la versione del database antecedente le modifiche, il seco
 Esiste una strategia più veloce che, invece di confrontare due versioni del database, estrae direttamente i changeset effettuati da una certa data e ora fino al presente. Questa procedura è stata implementata in `get-updates-by-time.sh`. Basta eseguire il comando con la seguente sintassi: `./get-updates-by-time.sh [data in formato yyyy-MM-dd_HH:mm:ss]` oppure `./get-updates-by-time.sh [inizio intervallo in yyyy-MM-dd_HH:mm:ss] [fine intervallo in yyyy-MM-dd_HH:mm:ss]`.
 
 ## Task periodico
-Lo script `update-tiles-periodic-task.sh` può essere invocato periodicamente con programmi tipo Crontab.
+Lo script `check-website-for-updates.sh` può essere invocato periodicamente con programmi tipo Crontab.

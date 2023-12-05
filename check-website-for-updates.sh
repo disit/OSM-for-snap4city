@@ -1,5 +1,5 @@
 set -e
-OSC_FILE=cron-update.osc.gz
+OSC_FILE=update-`date +%m-%d-%Y-%H-%M`.osc.gz
 OSM_SNAP4CITY_PATH="/home/matteo/Documenti/GitHub/OSM-for-snap4city/"
 cd $OSM_SNAP4CITY_PATH
 docker-compose run --rm web osmosis --read-apidb-change $(cat openstreetmap-website/auth-file.txt) intervalBegin=$(cat openstreetmap-tile-server/last-update.txt) readFullHistory=yes --wxc $OSC_FILE

@@ -1,11 +1,11 @@
 set -e
 LEAFLET_TILE_SERVER_IP=http://$(hostname):8080/
-if [[ $# -eq 2 && $1 == "--bind-ip" ]]; then
+if [[ $# -eq 2 && $1 == "--bind-url" ]]; then
 	LEAFLET_TILE_SERVER_IP=$2
 elif [[ $# -ne 0 ]]; then
 	echo "Corretto utilizzo:"
 	echo "-  ./osm-website-setup.sh"
-	echo "-  ./osm-website-setup.sh --bind-ip <url:port>"
+	echo "-  ./osm-website-setup.sh --bind-url <url:port>"
 	exit 1
 fi
 if [[ $# -eq 0 ]]; then

@@ -27,7 +27,7 @@ Questa API è specializzata nel fare query in sola lettura sul database OSM in m
 
 ### Setup
 
-Per prima cosa è stato installato sulla macchina virtuale un clone del sito di OpenStreetMap con il tool grafico integrato “iD Editor”. È stato sufficiente seguire la guida su https://github.com/openstreetmap/openstreetmap-website/blob/master/DOCKER.md, che permette di installarlo in un container Docker tramite Docker-compose. Di seguito è raffigurato un diagramma di flusso che riassume tutti gli step seguiti per inizializzare il sito.
+Per prima cosa è stato installato sulla macchina virtuale un clone del sito di OpenStreetMap con il tool grafico integrato “iD Editor”. È stato sufficiente seguire la guida su https://github.com/openstreetmap/openstreetmap-website/blob/master/DOCKER.md, che permette di installarlo in un container Docker tramite Docker-compose. Di seguito è raffigurato un sequence diagram che riassume tutti gli step seguiti per inizializzare il sito.
 
 ![](images/website-setup.drawio.svg)
 

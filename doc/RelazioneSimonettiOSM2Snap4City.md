@@ -31,7 +31,7 @@ Per prima cosa è stato installato sulla macchina virtuale un clone del sito di 
 
 ![](images/website-setup.drawio.svg)
 
-Per configurare il primo utente e per abilitare l'editor basta seguire la guida sotto:
+Per configurare il sito, registrare il primo utente e per abilitare l'editor basta seguire la guida sotto:
 ![](images/setup-utente-editor.drawio.svg)
 
 Per questo caso d'uso è stata scaricata la mappa di Firenze in formato osm.pbf dal sito https://osmit-estratti.wmcloud.org/. Un’alternativa è il sito [HotExport](https://export.hotosm.org/en/v3/), ma le mappe esportate sono prive di alcuni metadati tra cui le timestamps necessarie per impostare gli aggiornamenti automatici qualora saranno necessari. 
@@ -235,9 +235,9 @@ In questo esempio, oltre alla stessa criticità presente nel caso di Viale Alder
 :-------------------------:|:-------------------------: 
 _Figura 13: Tool per modificare la viabilità_ | _Figura 14: Criticità doppio semaforo_
 
-L’ultimo test è stato quello più problematico.
+Nell’ultimo test si è verificata un'anomalia.
 
-È stato sdoppiato il senso di marcia in un tratto di Via di Santa Marta, e sono state riscontrate delle anomalie. La più importante è stata che nel tratto rappresentato sotto in figura la strada e la forma disegnata non coincidono.
+È stato sdoppiato il senso di marcia in un tratto di Via di Santa Marta e si è riscontrato che nel tratto rappresentato sotto in figura la strada e la forma disegnata non coincidono.
 
 <img src="images/via-santa-marta-sdoppiata-critic.png" alt="via-santa-marta-sdoppiata-critic" width="400"/>
 

@@ -29,4 +29,4 @@ Il primo file .pbf è la versione del database antecedente le modifiche, il seco
 Esiste una strategia più veloce che, invece di confrontare due versioni del database, estrae direttamente i changeset effettuati da una certa data e ora fino al presente. Questa procedura è stata implementata in `get-updates-by-time.sh`. Basta eseguire il comando con la seguente sintassi: `./get-updates-by-time.sh [data in formato yyyy-MM-dd_HH:mm:ss]` oppure `./get-updates-by-time.sh [inizio intervallo in yyyy-MM-dd_HH:mm:ss] [fine intervallo in yyyy-MM-dd_HH:mm:ss]`.
 
 ## Task periodico
-Lo script `check-website-for-updates.sh` può essere invocato periodicamente con programmi tipo Crontab.
+Lo script `create-crontab.sh` installa un crontab che invoca ogni 5 minuti `check-website-for-updates.sh`.

@@ -280,12 +280,14 @@ _Figura 15: Anomalia Via di Santa Marta_
 
 ### Fare revert di un changeset
 
-Il revert delle modifiche non è un operazione immediata come potrebbe essere per esempio con i commit su Git. Queste sono alcune fonti che parlano di ciò:
+Il revert delle modifiche non è un operazione immediata come potrebbe essere per esempio con i commit su Git. Queste sono alcune fonti che ne parlano:
 
 - [https://wiki.openstreetmap.org/wiki/Change_rollback](https://wiki.openstreetmap.org/wiki/Change_rollback)
 - [https://wiki.openstreetmap.org/wiki/Osm-revert](https://wiki.openstreetmap.org/wiki/Osm-revert)
 
-In ogni caso, se si sbaglia a fare delle modifiche bisogna annullarle manualmente o eseguire uno dei tanti script per il revert delle modifiche. Quindi bisogna stare attenti alle modifiche che si vuole apportare. Una volta inviate i changesets questi vengono applicati subito sul database, senza alcun processo di approvazione da parte degli amministratori.
+In particolare il tool Osm-revert[<sup>6</sup>](https://github.com/Zaczero/osm-revert) analizza uno o più changeset e genera un altro changeset che contiene delle contromodifiche che vanno ad annullare quelle precedenti.
+
+In ogni caso, se si sbaglia a fare delle modifiche bisogna annullarle manualmente o eseguire uno dei tanti script che invertono le modifiche. Quindi bisogna stare attenti alle modifiche che si vuole apportare. Una volta inviate i changesets questi vengono applicati subito sul database, senza alcun processo di approvazione da parte degli amministratori.
 
 ### Altre fonti
 

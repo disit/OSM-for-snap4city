@@ -18,6 +18,10 @@ Questa repo fa uso dei seguenti software:
   Di default lo script imposta l'url del tile server a `http://<hostname>:8080/`. Si può specificare un url diverso con l'opzione `--bind-url`.
 - Procedere con la registrazione e configurazione dell' utente dell'editor sulla pagina web (di default [http://localhost:3000/](http://localhost:3000/)). Seguire le sezioni 'Managing Users' e 'OAuth Consumer Keys' di [questa pagina](https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md). Lo script `open-rails-console.sh` all'interno di `/openstreetmap-website` semplifica l'apertura della console del container.
 
+## :warning: Docker-compose 1.29.2
+Se si utilizza docker-compose 1.29.2, come la macchina virtuale usata per l'elaborato, bisogna allora invocare lo script `install-with-docker-compose-1-29.sh` invece di `osm-website-setup.sh` e `osm-tile-server-setup.sh`.
+La ragione è che con questa versione di docker-compose si incappa in errori del tipo `Build path either does not exist, is not accessible, or is not a valid URL`.
+
 ## Procedura di aggiornamento delle tile
 Questa procedura consiste nel confrontare due file .pbf e trarre le modifiche con Osmosis. Queste modifiche vengono poi compresse in un file .gz e passate al tile server, che con le quali stabilisce quali tiles devono essere rirenderizzate.
 

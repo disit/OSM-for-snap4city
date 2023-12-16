@@ -124,7 +124,7 @@ Le modifiche fatte con l’editor iD finiscono sia nella tabella “current” c
 
 ### OSM Tile Server
 
-Per renderizzare le nuove tile c’è bisogno di un tile server. Tra le varie alternative è stato scelto di fare un [fork](https://github.com/SimoMett/openstreetmap-tile-server) di [openstreetmap-tile-server di Overv](https://github.com/Overv/openstreetmap-tile-server), che è la soluzione al momento più facile da mettere in piedi.  
+Per renderizzare le nuove tile c’è bisogno di un tile server. Tra le varie alternative è stato scelto di fare un [fork](https://github.com/SimoMett/openstreetmap-tile-server) di [openstreetmap-tile-server di Overv](https://github.com/Overv/openstreetmap-tile-server), che è stata la soluzione più facile da mettere in piedi.  
 Lo script `osm-tile-server-setup.sh` clona e configura il server come descritto nei seguenti passaggi:
 
 - Clonare la [repository](https://github.com/SimoMett/openstreetmap-tile-server) ed eseguire il comando `docker-compose build`.
@@ -294,4 +294,5 @@ In ogni caso, se si sbaglia a fare delle modifiche bisogna annullarle manualment
 2. https://help.openstreetmap.org/questions/62670/way_nodes-and-current_way_nodes  
 3. https://wiki.openstreetmap.org/wiki/Query_features_tool  
 4. https://dev.overpass-api.de/overpass-doc/en/more_info/setup.html  
-5. https://help.openstreetmap.org/questions/73488/change-tiles-of-local-openstreetmap-website  
+5. https://help.openstreetmap.org/questions/73488/change-tiles-of-local-openstreetmap-website
+6. https://github.com/Zaczero/osm-revert

@@ -45,7 +45,7 @@ Questa repo fa uso dei seguenti software:
 ### Procedura di aggiornamento delle tile
 Questa procedura consiste nel confrontare due file .pbf e trarre le modifiche con Osmosis. Queste modifiche vengono poi compresse in un file .gz e passate al tile server, che con le quali stabilisce quali tiles devono essere rirenderizzate.
 
-Il primo file .pbf è la versione del database antecedente le modifiche, il secondo file invece è la versione che contiene le modifiche. È importante quindi che ci sia una versione "pulita" priva di modifiche. Se questo file non esiste, allora prima di fare qualsiasi modifica su iD eseguire il comando `./export-to-pbf.sh Firenze-latest.osm.pbf`. Successivamente:
+Il primo file .pbf è la versione del database antecedente le modifiche, il secondo file invece è la versione che contiene le modifiche. È importante quindi che ci sia una versione "pulita" priva di modifiche. Se questo file non esiste, allora prima di fare qualsiasi modifica su iD eseguire il comando `./export-to-pbf.sh Firenze-latest.osm.pbf` in `/openstreetmap-website`. Successivamente:
 - Nella cartella `/openstreetmap-website` eseguire `./get-updates.sh`.
 - Nella cartella `/openstreetmap-tile-server` eseguire `./launch-update-task.sh`
 
@@ -64,10 +64,11 @@ Per prima cosa è stato installato sulla macchina virtuale un clone del sito di 
 Per configurare il sito, registrare il primo utente e per abilitare l'editor basta seguire la guida sotto:
 ![](images/setup-utente-editor.drawio.svg)
 
-Per questo caso d'uso è stata scaricata la mappa di Firenze in formato osm.pbf dal sito https://osmit-estratti.wmcloud.org/. Un’alternativa è il sito [HotExport](https://export.hotosm.org/en/v3/), ma le mappe esportate sono prive di alcuni metadati tra cui le timestamps necessarie per impostare gli aggiornamenti automatici qualora saranno necessari. 
+Per questo caso d'uso è stata scaricata la mappa di Firenze in formato osm.pbf dal sito https://osmit-estratti.wmcloud.org/. Un’alternativa è il sito [HotExport](https://export.hotosm.org/en/v3/).
 
 La mappa selezionata è approssimativa, cioè contiene tutti i dati di Firenze ma anche dati parziali di comuni vicini. Questo perché i tool menzionati scaricano i dati selezionati da una boundingbox. Per query più elaborate si potrebbe provare a usare il tool [OverpassTurbo](https://overpass-turbo.eu/) [<sup>1</sup>](https://help.openstreetmap.org/questions/80335/find-cities-boundary-in-a-specific-country).
 
+### ⚠️ Attenzione
 Occasionalmente durante la fase di import del file osm.pbf si riscontravano errori del tipo `duplicate key value violates unique constraint`. In questi casi è stato sufficiente eseguire i seguenti comandi che difatto resettano i database:
 
 - `docker-compose run --rm web bundle exec rails db:reset`
@@ -154,7 +155,7 @@ L’aggiornamento delle tile non è un’azione di norma immediata. Al momento �
 Con _osmosis_ la procedura per generare i diffs tra due file pbf è la seguente:
 
 -   `osmosis --read-pbf “file1.osm.pbf” --read-pbf “file2.osm.pbf” --derive-change --write-xml-change “updates.osc.gz”`.  
-    Questo comando prende in input due file pbf, trova le differenze e le salva in un file formato .osc.gz .  Lo script `export-diffs.sh` riassume questo comando, basta invocarlo con i nomi dei tre file, per esempio `./export-diffs.sh file1.osm.pbf file2.osm.pbf updates.osc.gz`.
+    Questo comando prende in input due file pbf, trova le differenze e le salva in un file formato .osc.gz .
 
 L'intera operazione impiega una decina di secondi per changesets piccoli. Non è stato ancora testato per changesets grandi.
 

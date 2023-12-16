@@ -25,8 +25,6 @@ Questa API è specializzata nel fare query in sola lettura sul database OSM in m
 <div style="page-break-after: always;"></div>
 
 ## Guida al setup delle componenti di OSM
-Questa repository contiene script per inizializzare e mantenere l'editor iD di OpenStreetMap e il tile server.
-
 ### Requisiti
 Questa repo fa uso dei seguenti software:  
 - Docker
@@ -42,12 +40,12 @@ Questa repo fa uso dei seguenti software:
 ### Inizializzazione editor iD
 - Eseguire `osm-website-setup.sh`. Questo script inizializza e avvia l'editor iD. Non importa avviarlo tramite docker-compose.  
   Di default lo script imposta l'url del tile server a `http://<hostname>:8080/`. Si può specificare un url diverso con l'opzione `--bind-url`.
-- Procedere con la registrazione e configurazione dell' utente dell'editor sulla pagina web (di default [http://localhost:3000/](http://localhost:3000/)). Seguire le sezioni 'Managing Users' e 'OAuth Consumer Keys' di [questa pagina](https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md). Lo script `open-rails-console.sh` all'interno di `/openstreetmap-website` semplifica l'apertura della console del container.
+- Procedere con la registrazione e configurazione dell' utente dell'editor sulla pagina web (di default [http://localhost:3000/](http://localhost:3000/)). Seguire le sezioni 'Managing Users' e 'OAuth Consumer Keys' di [questa pagina](https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md), oppure il diagramma riportato successivamente. Lo script `open-rails-console.sh` all'interno di `/openstreetmap-website` semplifica l'apertura della console del container.
 
 ### Procedura di aggiornamento delle tile
 Questa procedura consiste nel confrontare due file .pbf e trarre le modifiche con Osmosis. Queste modifiche vengono poi compresse in un file .gz e passate al tile server, che con le quali stabilisce quali tiles devono essere rirenderizzate.
 
-Il primo file .pbf è la versione del database antecedente le modifiche, il secondo file invece è la versione che contiene le modifiche. È importante quindi che ci sia una versione "pulita" priva di modifiche. Se questo file non esiste, allora prima di fare qualsiasi modifica su iD eseguire il comando `./export-to-pbf.sh Firenze-latest.osm.pbf` in `/openstreetmap-website`. Successivamente:
+Il primo file .pbf è la versione del database antecedente le modifiche, il secondo file invece è la versione che contiene le modifiche. È importante quindi che ci sia una versione "pulita" priva di modifiche. Se questo file non esiste, allora prima di fare qualsiasi modifica su iD eseguire il comando `./export-to-pbf.sh Firenze-latest.osm.pbf`. Successivamente:
 - Nella cartella `/openstreetmap-website` eseguire `./get-updates.sh`.
 - Nella cartella `/openstreetmap-tile-server` eseguire `./launch-update-task.sh`
 

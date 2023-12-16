@@ -42,10 +42,11 @@ docker-compose build db web
 docker-compose run --rm web bundle exec rails db:migrate
 chmod +x import-pbf.sh
 ./import-pbf.sh Firenze.osm.pbf
+cd openstreetmap-website
 chmod +x export-to-pbf.sh
 ./export-to-pbf.sh Firenze-latest.osm.pbf
 echo "Procedere con la registrazione del proprio utente e con la configurazione dell'editor iD su http://localhost:3000/"
 echo "Vedi 'Managing Users' e 'OAuth Consumer Keys' in https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md"
 echo "Lo script \"open-rails-console.sh\" può aiutare ad aprire la console del container"
-echo "$(date -u +%Y-%m-%d_%H:%M:%S)" > openstreetmap-website/last-update.txt
+echo "$(date -u +%Y-%m-%d_%H:%M:%S)" > last-update.txt
 exit 0

@@ -24,6 +24,8 @@ docker volume create osm-website_web-tmp && docker volume create osm-website_web
 
 echo "Setup openstreetmap-website"
 cp website-scripts/auth-file.txt openstreetmap-website
+cp website-scripts/export-to-pbf.sh openstreetmap-website
+cp website-scripts/export-to-named-pbf.sh openstreetmap-website
 cp website-scripts/make-diffs.sh openstreetmap-website
 cp website-scripts/get-updates.sh openstreetmap-website
 cp website-scripts/get-updates-by-time.sh openstreetmap-website

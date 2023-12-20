@@ -140,7 +140,7 @@ Di default il sito web di OSM utilizza le proprie tile per la modalità visualiz
 2. Entrare nell'editor iD, cliccare a destra su "Background Settings", cambiare il background a custom e inserire il medesimo URL di prima, ovvero `http://<host>:<port>/tile/{z}/{x}/{y}.png`.
     
 #### Aggiornamento delle tile
-L’aggiornamento delle tile non è un’azione di norma immediata. Al momento è stata individuata una procedura per aggiornare il database e le tile che sfrutta il programma _osm2pgsql_ incluso nel container.  Lo script `launch-update-task.sh` automatizza questa operazione effettuando i seguenti step che possono essere svolti manualmente: 
+L’aggiornamento delle tile non è un’azione di norma immediata. Al momento è stata individuata una procedura per aggiornare il database e le tile che sfrutta il programma _osm2pgsql_[<sup>6</sup>](https://osm2pgsql.org/doc/man/latest.html) incluso nel container.  Lo script `launch-update-task.sh` automatizza questa operazione effettuando i seguenti step che possono essere svolti manualmente: 
 
 -   Montare una cartella esterna su `/data/updates` o altro percorso a scelta.  
     Siccome si usa docker-compose, è bastato aggiungere la riga `-./osm-updates:/data/updates` sotto la riga `- osm-tiles:/data/tiles/`
@@ -284,7 +284,7 @@ Il revert delle modifiche non è un operazione immediata come potrebbe essere pe
 - [https://wiki.openstreetmap.org/wiki/Change_rollback](https://wiki.openstreetmap.org/wiki/Change_rollback)
 - [https://wiki.openstreetmap.org/wiki/Osm-revert](https://wiki.openstreetmap.org/wiki/Osm-revert)
 
-In particolare il tool Osm-revert[<sup>6</sup>](https://github.com/Zaczero/osm-revert) analizza uno o più changeset e genera un altro changeset che contiene delle contromodifiche che vanno ad annullare quelle precedenti.
+In particolare il tool Osm-revert[<sup>7</sup>](https://github.com/Zaczero/osm-revert) analizza uno o più changeset e genera un altro changeset che contiene delle contromodifiche che vanno ad annullare quelle precedenti.
 
 In ogni caso, se si sbaglia a fare delle modifiche bisogna annullarle manualmente o eseguire uno dei tanti script che invertono le modifiche. Quindi bisogna stare attenti alle modifiche che si vuole apportare. Una volta inviate i changesets questi vengono applicati subito sul database, senza alcun processo di approvazione da parte degli amministratori.
 
@@ -295,4 +295,5 @@ In ogni caso, se si sbaglia a fare delle modifiche bisogna annullarle manualment
 3. https://wiki.openstreetmap.org/wiki/Query_features_tool  
 4. https://dev.overpass-api.de/overpass-doc/en/more_info/setup.html  
 5. https://help.openstreetmap.org/questions/73488/change-tiles-of-local-openstreetmap-website
-6. https://github.com/Zaczero/osm-revert
+6. https://osm2pgsql.org/doc/man/latest.html
+7. https://github.com/Zaczero/osm-revert

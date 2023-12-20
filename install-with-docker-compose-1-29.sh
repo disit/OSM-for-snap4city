@@ -1,14 +1,3 @@
-CURRENT_PWD=$(pwd)
-set -e
-if [ ! -f Firenze.osm.pbf ]; then
-	curl -o Firenze.osm.pbf https://osmit-estratti.wmcloud.org/dati/poly/comuni/pbf/048017_Firenze.osm.pbf
-fi
-
-git clone https://github.com/openstreetmap/openstreetmap-website.git
-git clone https://github.com/SimoMett/openstreetmap-tile-server.git
-docker volume create osm-data && docker volume create osm-tiles
-docker volume create osm-website_web-tmp && docker volume create osm-website_web-storage && docker volume create osm-website_db-data
-
 LEAFLET_TILE_SERVER_IP=http://$(hostname):8080/
 if [[ $# -eq 2 && $1 == "--bind-url" ]]; then
 	LEAFLET_TILE_SERVER_IP=$2
@@ -21,6 +10,17 @@ fi
 if [[ $# -eq 0 ]]; then
 	echo "Indirizzo IP del tile server non specificato. È stato impostato quello di default: $LEAFLET_TILE_SERVER_IP"
 fi
+
+CURRENT_PWD=$(pwd)
+set -e
+if [ ! -f Firenze.osm.pbf ]; then
+	curl -o Firenze.osm.pbf https://osmit-estratti.wmcloud.org/dati/poly/comuni/pbf/048017_Firenze.osm.pbf
+fi
+
+git clone https://github.com/openstreetmap/openstreetmap-website.git
+git clone https://github.com/SimoMett/openstreetmap-tile-server.git
+docker volume create osm-data && docker volume create osm-tiles
+docker volume create osm-website_web-tmp && docker volume create osm-website_web-storage && docker volume create osm-website_db-data
 
 echo "Setup openstreetmap-website"
 cp website-scripts/auth-file.txt openstreetmap-website

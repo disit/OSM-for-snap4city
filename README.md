@@ -4,7 +4,7 @@ Questa repository contiene script per inizializzare e mantenere l'editor iD di O
 ## Requisiti
 Questa repo fa uso dei seguenti software:
 - Docker
-- Docker-compose
+- Docker-compose 2
 - Osmosis (https://wiki.openstreetmap.org/wiki/Osmosis/Installation)
 - Osmium (https://osmcode.org/osmium-tool/)
 

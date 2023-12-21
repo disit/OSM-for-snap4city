@@ -11,9 +11,14 @@ if [[ $WAYS_COUNT == 0 && $NODES_COUNT == 0 && $RELATIONS_COUNT == 0 && $CHANGES
 	echo "Nessun aggiornamento disponibile"
 	rm -f openstreetmap-website/$OSC_FILE
 else
-	echo "Aggiornamento avviato"
-	mv -f openstreetmap-website/$OSC_FILE openstreetmap-tile-server/osm-updates/updates.osc.gz
-	cd openstreetmap-tile-server
-	./launch-update-task.sh
-	echo "Aggiornamento concluso con successo"
+	read -p "Avviare l'aggiornamento? " -n 1 -r
+	echo 
+	if [[ $REPLY =~ ^[Yy]$ ]]
+	then
+	    echo "Aggiornamento avviato"
+		mv -f openstreetmap-website/$OSC_FILE openstreetmap-tile-server/osm-updates/updates.osc.gz
+		cd openstreetmap-tile-server
+		./launch-update-task.sh
+		echo "Aggiornamento concluso con successo"
+	fi
 fi

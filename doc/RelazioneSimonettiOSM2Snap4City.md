@@ -28,7 +28,7 @@ Questa API è specializzata nel fare query in sola lettura sul database OSM in m
 ### Requisiti
 Questa repo fa uso dei seguenti software:  
 - Docker
-- Docker-compose
+- Docker-compose 2
 - Osmosis (https://wiki.openstreetmap.org/wiki/Osmosis/Installation)
 - Osmium (https://osmcode.org/osmium-tool/)
 

@@ -16,7 +16,6 @@ if [[ $# -eq 0 ]]; then
 	echo "Indirizzo IP del tile server non specificato. È stato impostato quello di default: $LEAFLET_TILE_SERVER_IP"
 fi
 
-git clone https://github.com/openstreetmap/openstreetmap-website.git
 echo "Setup openstreetmap-website"
 cp website-scripts/auth-file.txt openstreetmap-website
 cp website-scripts/export-to-pbf.sh openstreetmap-website

@@ -66,7 +66,10 @@ Per configurare il sito, registrare il primo utente e per abilitare l'editor bas
 
 Per questo caso d'uso è stata scaricata la mappa di Firenze in formato osm.pbf dal sito https://osmit-estratti.wmcloud.org/. Un’alternativa è il sito [HotExport](https://export.hotosm.org/en/v3/).
 
-La mappa selezionata è approssimativa, cioè contiene tutti i dati di Firenze ma anche dati parziali di comuni vicini. Questo perché i tool menzionati scaricano i dati selezionati da una boundingbox. Per query più elaborate si potrebbe provare a usare il tool [OverpassTurbo](https://overpass-turbo.eu/) [<sup>1</sup>](https://help.openstreetmap.org/questions/80335/find-cities-boundary-in-a-specific-country).
+La mappa selezionata è approssimativa, cioè contiene tutti i dati di Firenze ma anche dati parziali di comuni vicini. Questo perché i tool menzionati scaricano i dati selezionati da una boundingbox. Per query più elaborate si potrebbe provare a usare il tool [OverpassTurbo](https://overpass-turbo.eu/) [<sup>1</sup>](https://help.openstreetmap.org/questions/80335/find-cities-boundary-in-a-specific-country).  
+Una volta ingerito il file pbf, viene avviato il container per completare la configurazione dell’editor, i cui step sono mostrati nel documento [CONFIGURE.md](https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md) della repository.  
+Tutta questa procedura di setup è racchiusa nello script `osm-website-setup.sh`, eccezion fatta per la registrazione e configurazione manuale dell'utente di iD.
+Lo script `open-rails-console.sh` è un alias del comando (troppo verboso) `docker-compose run --rm web bundle exec rails console` che apre la console del database.
 
 ### ⚠️ Attenzione
 Occasionalmente durante la fase di import del file osm.pbf si riscontravano errori del tipo `duplicate key value violates unique constraint`. In questi casi è stato sufficiente eseguire i seguenti comandi che difatto resettano i database:
@@ -74,10 +77,6 @@ Occasionalmente durante la fase di import del file osm.pbf si riscontravano erro
 - `docker-compose run --rm web bundle exec rails db:reset`
 
 - `docker-compose run --rm web bundle exec rails db:migrate` 
-
-Una volta ingerito il file pbf, viene avviato il container per completare la configurazione dell’editor, i cui step sono mostrati nel documento [CONFIGURE.md](https://github.com/openstreetmap/openstreetmap-website/blob/master/CONFIGURE.md) della repository.  
-Tutta questa procedura di setup è racchiusa nello script `osm-website-setup.sh`, eccezion fatta per la registrazione e configurazione manuale dell'utente di iD.
-Lo script `open-rails-console.sh` è un alias del comando (troppo verboso) `docker-compose run --rm web bundle exec rails console` che apre la console del database.
 
 ### Primi test – cancellazione di entità
 
@@ -140,7 +139,7 @@ Di default il sito web di OSM utilizza le proprie tile per la modalità visualiz
 2. Entrare nell'editor iD, cliccare a destra su "Background Settings", cambiare il background a custom e inserire il medesimo URL di prima, ovvero `http://<host>:<port>/tile/{z}/{x}/{y}.png`.
     
 #### Aggiornamento delle tile
-L’aggiornamento delle tile non è un’azione di norma immediata. Al momento è stata individuata una procedura per aggiornare il database e le tile che sfrutta il programma _osm2pgsql_[<sup>6</sup>](https://osm2pgsql.org/doc/man/latest.html) incluso nel container.  Lo script `launch-update-task.sh` automatizza questa operazione effettuando i seguenti step che possono essere svolti manualmente: 
+L’aggiornamento delle tile non è un’azione di norma immediata. Al momento è stata individuata una procedura per aggiornare il database e le tile che sfrutta il programma _osm2pgsql_ [<sup>6</sup>](https://osm2pgsql.org/doc/man/latest.html) incluso nel container.  Lo script `launch-update-task.sh` automatizza questa operazione effettuando i seguenti step che possono essere svolti manualmente: 
 
 -   Montare una cartella esterna su `/data/updates` o altro percorso a scelta.  
     Siccome si usa docker-compose, è bastato aggiungere la riga `-./osm-updates:/data/updates` sotto la riga `- osm-tiles:/data/tiles/`

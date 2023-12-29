@@ -16,13 +16,25 @@ Si perché, oltre a far visualizzare e modificare la mappa, questo servizio espo
 A questo punto si può procedere in due modi:
 
 ### Modo 1
-Pagina web che permette di scegliere a quale editor collegarsi bla bla bla
+Costruire una pagina web che permette di scegliere a quale editor collegarsi.
+Di seguito sono mostrati due mockup di interfaccia grafica.
+
+<img src="images/buttons-interface.drawio.svg" alt="image" width="250"/>|<img src="images/tabs-interface.drawio.svg" alt="dalmazia-criticita-doppio-semaforo" width="310"/>
+:-------------------------:|:-------------------------: 
+_Figura 1: Interfaccia a bottoni_ | _Figura 2: Interfaccia a schede_
+
+Il primo sketch modella un'interfaccia semplice in cui ci sono _n_ pulsanti che aprono l'editor desiderato in un'altra scheda del browser.
+Il secondo rappresenta una schermata un po' più elaborata in cui ci sono _n_ schede e ognuna di esse contiene un _iframe_ che incapsula la pagina dell'editor selezionato.
+Per quest'ultima soluzione è necessario modificare le _X-Frame-Options_ nell'header HTTP del sito web [<sup>1</sup>](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options).
+
+
 
 ### Modo 2
 Modificare iD ancora bla bla bla
 
 
 ## Fonti
-1. https://github.com/openstreetmap/iD/issues/4288 - Switching server while loading causes glitchy behavior
-2. https://github.com/openstreetmap/iD/issues/4405 - Allow switching of servers on preview.ideditor.com
-3. https://github.com/openstreetmap/openstreetmap-website/pull/3792 - Hide live/dev server switcher on integrated iD editor
+1. https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
+2. https://github.com/openstreetmap/iD/issues/4288 - Switching server while loading causes glitchy behavior
+3. https://github.com/openstreetmap/iD/issues/4405 - Allow switching of servers on preview.ideditor.com
+4. https://github.com/openstreetmap/openstreetmap-website/pull/3792 - Hide live/dev server switcher on integrated iD editor

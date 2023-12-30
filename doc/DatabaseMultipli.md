@@ -32,6 +32,13 @@ Per quest'ultima soluzione è necessario modificare le _X-Frame-Options_ nell'he
 ### Modo 2
 Modificare iD ancora bla bla bla
 
+//
+
+- Modificare/aggiungere più voci in `it.min.json` o in `en.min.json` nella entry `"source_switch"` (per modificare la voce live/dev su iD)
+- Modificare oggetto alla riga 22868 in `iD.js` aggiungendo altre connessioni
+
+//
+
 
 ## Fonti
 1. https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options

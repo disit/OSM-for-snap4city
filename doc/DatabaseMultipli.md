@@ -35,7 +35,10 @@ Modificare iD ancora bla bla bla
 //
 
 - Modificare/aggiungere più voci in `it.min.json` o in `en.min.json` nella entry `"source_switch"` (per modificare la voce live/dev su iD)
-- Modificare oggetto alla riga 22868 in `iD.js` aggiungendo altre connessioni
+- Modificare/aggiungere nuove connessioni nell'oggetto alla riga 22868 in `iD.js`
+- Invertire le modifiche fatte con la pull-request [#3792](https://github.com/openstreetmap/openstreetmap-website/pull/3792) per ripristinare lo switch "live/dev" [<sup>4</sup>](https://github.com/openstreetmap/openstreetmap-website/pull/3792).
+È sufficente sostituire il file https://github.com/openstreetmap/openstreetmap-website/blob/b3e5af0ee83bfe97882f462972184d8697ef3237/app/assets/javascripts/id.js
+- Trovare un modo per modificare questo switch e sostituirlo con un menù a tendina o un altro controller.
 
 //
 

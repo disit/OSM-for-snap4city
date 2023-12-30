@@ -19,7 +19,7 @@ A questo punto si può procedere in due modi:
 Costruire una pagina web che permette di scegliere a quale editor collegarsi.
 Di seguito sono mostrati due mockup di interfaccia grafica.
 
-<img src="images/buttons-interface.drawio.svg" alt="image" width="250"/>|<img src="images/tabs-interface.drawio.svg" alt="dalmazia-criticita-doppio-semaforo" width="310"/>
+<img src="images/buttons-interface.drawio.svg" alt="image" width="370"/>|<img src="images/tabs-interface.drawio.svg" alt="dalmazia-criticita-doppio-semaforo" width="460"/>
 :-------------------------:|:-------------------------: 
 _Figura 1: Interfaccia a bottoni_ | _Figura 2: Interfaccia a schede_
 

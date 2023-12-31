@@ -30,18 +30,17 @@ Per quest'ultima soluzione è necessario modificare le _X-Frame-Options_ nell'he
 
 
 ### Modo 2
-Modificare iD ancora bla bla bla
+Modificare l'interfaccia di iD.  
+Questa strada è un po' più difficile da percorrere in quanto bisogna apportare delle modifiche nel codice javascript dell'editor.
+Ma non è necessario creare nulla di nuovo: iD ha delle funzionalità che permettono di scegliere quale istanza di OSM modificare. Queste funzionalità sono state nascoste nel sito di openstreetmap, ma possono essere riattivate.
+Di seguito ci sono alcuni suggerimenti su dove poter mettere le mani.
 
-//
-
-- Modificare/aggiungere più voci in `it.min.json` o in `en.min.json` nella entry `"source_switch"` (per modificare la voce live/dev su iD)
-- Modificare/aggiungere nuove connessioni nell'oggetto alla riga 22868 in `iD.js`
-- Invertire le modifiche fatte con la pull-request [#3792](https://github.com/openstreetmap/openstreetmap-website/pull/3792) per ripristinare lo switch "live/dev" [<sup>4</sup>](https://github.com/openstreetmap/openstreetmap-website/pull/3792).
-È sufficente sostituire il file https://github.com/openstreetmap/openstreetmap-website/blob/b3e5af0ee83bfe97882f462972184d8697ef3237/app/assets/javascripts/id.js
+- Invertire le modifiche fatte con la pull-request [#3792](https://github.com/openstreetmap/openstreetmap-website/pull/3792) per ripristinare lo switch "live/dev" [<sup>4</sup>](https://github.com/openstreetmap/openstreetmap-website/pull/3792) ![](images/live-dev-button.png) presente in basso a destra della schermata.
+È sufficente sostituire il file `app/assets/javascripts/id.js` con quello scaricabile da https://github.com/openstreetmap/openstreetmap-website/blob/b3e5af0ee83bfe97882f462972184d8697ef3237/app/assets/javascripts/id.js
+- Modificare/aggiungere più voci in `vendor/assets/iD/iD/locales/it.min.json` o in `vendor/assets/iD/iD/locales/en.min.json` nella entry `source_switch` (per modificare la scritta "live/dev" su iD)
+- Modificare/aggiungere nuove connessioni nell'oggetto alla riga 22868 in `vendor/assets/iD/iD.js`
 - Trovare un modo per modificare questo switch e sostituirlo con un menù a tendina o un altro controller.
-
-//
-
+- Modificare/creare ex novo il file `vendor/assets/iD/iD/data/imagery.min.json` per poter aggiungere nuove fonti delle tile selezionabili nelle impostazioni di sfondo dell'editor.
 
 ## Fonti
 1. https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options

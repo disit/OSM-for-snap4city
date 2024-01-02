@@ -42,6 +42,6 @@ Di seguito ci sono alcuni suggerimenti su dove poter mettere le mani.
 
 ## Fonti
 1. https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
-2. https://github.com/openstreetmap/iD/issues/4288 - Switching server while loading causes glitchy behavior
-3. https://github.com/openstreetmap/iD/issues/4405 - Allow switching of servers on preview.ideditor.com
-4. https://github.com/openstreetmap/openstreetmap-website/pull/3792 - Hide live/dev server switcher on integrated iD editor
+2. https://github.com/openstreetmap/iD/issues/4288 - _Switching server while loading causes glitchy behavior_
+3. https://github.com/openstreetmap/iD/issues/4405 - _Allow switching of servers on preview.ideditor.com_
+4. https://github.com/openstreetmap/openstreetmap-website/pull/3792 - _Hide live/dev server switcher on integrated iD editor_

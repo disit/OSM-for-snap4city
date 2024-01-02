@@ -32,7 +32,7 @@ Per quest'ultima soluzione è necessario modificare le _X-Frame-Options_ nell'he
 ### Modo 2
 Modificare l'interfaccia di iD.  
 Questa strada è un po' più difficile da percorrere in quanto bisogna apportare delle modifiche nel codice javascript dell'editor.
-Ma non è necessario creare nulla di nuovo: iD ha delle funzionalità che permettono di scegliere quale istanza di OSM modificare. Queste funzionalità sono state nascoste nel sito di openstreetmap, ma possono essere riattivate.
+Ma non è necessario creare nulla di nuovo: iD ha delle funzionalità che permettono di scegliere in tempo reale quale istanza di OSM modificare. Queste funzionalità sono state nascoste nel sito di openstreetmap, ma possono essere riattivate.
 Di seguito ci sono alcuni suggerimenti su dove poter mettere le mani.
 
 - Invertire le modifiche fatte con la pull-request [#3792](https://github.com/openstreetmap/openstreetmap-website/pull/3792) per ripristinare lo switch "live/dev" [<sup>4</sup>](https://github.com/openstreetmap/openstreetmap-website/pull/3792) ![](images/live-dev-button.png) presente in basso a destra della schermata.

@@ -1,6 +1,6 @@
-# Gestire più database OSM
+# Gestire più istanze OSM
 
-Supponiamo di voler mettere in piedi _n_ basi di dati di OSM, ognuna con una propria mappa e un tile server accoppiato, e che siano accessibili e modificabili con l'editor iD.
+Supponiamo di voler mettere in piedi _n_ istanze di OSM, ognuna con una propria mappa e un tile server accoppiato, e che siano accessibili e modificabili con l'editor iD.
 Inoltre nell'interfaccia deve essere presente un controller che permette all'editor di cambiare il database di lavoro in tempo reale.
 
 ## Una possibile soluzione
@@ -26,8 +26,6 @@ _Figura 1: Interfaccia a bottoni_ | _Figura 2: Interfaccia a schede_
 Il primo sketch modella un'interfaccia semplice in cui ci sono _n_ pulsanti che aprono l'editor desiderato in un'altra scheda del browser.
 Il secondo rappresenta una schermata un po' più elaborata in cui ci sono _n_ schede e ognuna di esse contiene un _iframe_ che incapsula la pagina dell'editor selezionato.
 Per quest'ultima soluzione è necessario modificare le _X-Frame-Options_ nell'header HTTP del sito web [<sup>1</sup>](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options).
-
-
 
 ### Modo 2
 Modificare l'interfaccia di iD.  

@@ -39,7 +39,7 @@ Di seguito ci sono alcuni suggerimenti su dove poter mettere le mani.
 È sufficente sostituire il file `app/assets/javascripts/id.js` con quello scaricabile da https://github.com/openstreetmap/openstreetmap-website/blob/b3e5af0ee83bfe97882f462972184d8697ef3237/app/assets/javascripts/id.js
 - Modificare/aggiungere più voci in `vendor/assets/iD/iD/locales/it.min.json` o in `vendor/assets/iD/iD/locales/en.min.json` nella entry `source_switch` (per modificare la scritta "live/dev" su iD)
 - Modificare/aggiungere nuove connessioni nell'oggetto alla riga 22868 in `vendor/assets/iD/iD.js`
-- Trovare un modo per modificare questo switch e sostituirlo con un menù a tendina o un altro controller.
+- Trovare un modo per modificare questo switch e sostituirlo con un menù a tendina o un altro controller (presumibilmente sempre dentro `vendor/assets/iD/iD.js`).
 - Modificare/creare ex novo il file `vendor/assets/iD/iD/data/imagery.min.json` per poter aggiungere nuove fonti delle tile selezionabili nelle impostazioni di sfondo dell'editor.
 
 ## Fonti

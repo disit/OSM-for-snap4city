@@ -3,8 +3,6 @@ if [ ! -f Firenze.osm.pbf ]; then
 	curl -o Firenze.osm.pbf https://osmit-estratti.wmcloud.org/dati/poly/comuni/pbf/048017_Firenze.osm.pbf
 fi
 
-echo "Cloning Github repo"
-git clone https://github.com/SimoMett/openstreetmap-tile-server.git
 docker volume create osm-data && docker volume create osm-tiles
 docker volume create osm-website_web-tmp && docker volume create osm-website_web-storage && docker volume create osm-website_db-data
 mkdir openstreetmap-tile-server/osm-updates

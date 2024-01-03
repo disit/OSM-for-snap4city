@@ -25,7 +25,7 @@ _Figura 1: Interfaccia a bottoni_ | _Figura 2: Interfaccia a schede_
 
 Il primo sketch modella un'interfaccia semplice in cui ci sono _n_ pulsanti che aprono l'editor desiderato in un'altra scheda del browser.
 Il secondo rappresenta una schermata un po' più elaborata in cui ci sono _n_ schede e ognuna di esse contiene un _iframe_ che incapsula la pagina dell'editor selezionato.
-Per quest'ultima soluzione è necessario modificare le _X-Frame-Options_ nell'header HTTP del sito web [<sup>1</sup>](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options) [<sup>2</sup>](https://stackoverflow.com/questions/18445782/how-to-override-x-frame-options-for-a-controller-or-action-in-rails-4).
+Per quest'ultima soluzione è necessario modificare le _X-Frame-Options_[<sup>1</sup>](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options) o la _Content-Security-Policy_[<sup>2</sup>](https://stackoverflow.com/questions/18445782/how-to-override-x-frame-options-for-a-controller-or-action-in-rails-4) nell'header HTTP del sito web.
 
 ### Modo 2
 Modificare l'interfaccia di iD.  

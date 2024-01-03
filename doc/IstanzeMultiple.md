@@ -25,7 +25,7 @@ _Figura 1: Interfaccia a bottoni_ | _Figura 2: Interfaccia a schede_
 
 Il primo sketch modella un'interfaccia semplice in cui ci sono _n_ pulsanti che aprono l'editor desiderato in un'altra scheda del browser.
 Il secondo rappresenta una schermata un po' più elaborata in cui ci sono _n_ schede e ognuna di esse contiene un _iframe_ che incapsula la pagina dell'editor selezionato.
-Per quest'ultima soluzione è necessario modificare le _X-Frame-Options_ nell'header HTTP del sito web [<sup>1</sup>](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options).
+Per quest'ultima soluzione è necessario modificare le _X-Frame-Options_ nell'header HTTP del sito web [<sup>1</sup>](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options) [<sup>2</sup>](https://stackoverflow.com/questions/18445782/how-to-override-x-frame-options-for-a-controller-or-action-in-rails-4).
 
 ### Modo 2
 Modificare l'interfaccia di iD.  
@@ -42,6 +42,7 @@ Di seguito ci sono alcuni suggerimenti su dove poter mettere le mani.
 
 ## Fonti
 1. https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
-2. https://github.com/openstreetmap/iD/issues/4288 - _Switching server while loading causes glitchy behavior_
+2. https://stackoverflow.com/questions/18445782/how-to-override-x-frame-options-for-a-controller-or-action-in-rails-4
 3. https://github.com/openstreetmap/iD/issues/4405 - _Allow switching of servers on preview.ideditor.com_
 4. https://github.com/openstreetmap/openstreetmap-website/pull/3792 - _Hide live/dev server switcher on integrated iD editor_
+5. https://github.com/openstreetmap/iD/issues/4288 - _Switching server while loading causes glitchy behavior_

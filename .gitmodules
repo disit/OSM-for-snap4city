@@ -1,6 +1,0 @@
-[submodule "openstreetmap-website"]
-	path = openstreetmap-website
-	url = https://github.com/openstreetmap/openstreetmap-website
-[submodule "openstreetmap-tile-server"]
-	path = openstreetmap-tile-server
-	url = https://github.com/SimoMett/openstreetmap-tile-server

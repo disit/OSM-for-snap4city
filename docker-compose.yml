@@ -1,6 +1,34 @@
 version: "3"
 
 services:
+  lighttpd:
+    image: sebp/lighttpd:latest
+    volumes:
+      - type: bind
+        source: ./lighttpd-config
+        target: /etc/lighttpd
+    ports:
+      - "31500:31337"
+    command:
+      - start.sh
+    depends_on:
+      - cgimap
+      - web
+    restart: unless-stopped
+  cgimap:
+    image: cgimap:latest
+    environment:
+     - CGIMAP_HOST=db
+     - CGIMAP_DBNAME=openstreetmap
+     - CGIMAP_USERNAME=openstreetmap
+     - CGIMAP_PASSWORD=openstreetmap
+    command: /usr/local/bin/openstreetmap-cgimap --port=8000 --instances=30
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
   web:
     build:
       context: ./openstreetmap-website
@@ -21,6 +49,7 @@ services:
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     depends_on:
       - db
+    restart: unless-stopped
 
   db:
     build:
@@ -34,6 +63,7 @@ services:
     volumes:
       # Mount the Postgres data directory so it persists between runs
       - osm-website_db-data:/var/lib/postgresql/data
+    restart: unless-stopped
   map:
     build: ./openstreetmap-tile-server
     volumes:
@@ -43,9 +73,10 @@ services:
     ports:
       - "8080:80"
     environment:
-      - THREADS=4
+      - THREADS=8
       - "OSM2PGSQL_EXTRA_ARGS=-C 4096"
     command: "run"
+    restart: unless-stopped
 
 volumes:
   osm-data:
